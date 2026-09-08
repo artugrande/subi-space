@@ -1,0 +1,84 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+/**
+ * @title SubiDistributor
+ * @notice Distribuye dividendos diarios entre humanos verificados
+ * @dev Índice acumulado, distribución por demanda, insolvencia imposible
+ * 
+ * Deployed on Celo Mainnet:
+ * 0xB3d836811DC211378285a39B8b0ba2ccCD086D81
+ * 
+ * Full source code:
+ * https://github.com/artugrande/subi-concierge-agent
+ */
+
+contract SubiDistributor {
+    // Simplified pseudocode for reference
+    // Real implementation at github.com/artugrande/subi-concierge-agent
+
+    struct AccumulatorState {
+        uint256 index;              // índice acumulado por humano
+        uint256 lastAccrualTime;    // timestamp del último devengo
+        uint256 distribuableBalance; // saldo disponible para distribuir
+    }
+
+    mapping(address => uint256) public lastClaimedIndex;
+    AccumulatorState public state;
+
+    /**
+     * @notice Devenga el índice acumulado hasta el presente
+     * @dev Llamado antes de cada claim. Público para transparencia.
+     */
+    function accrue() public {
+        uint256 elapsed = block.timestamp - state.lastAccrualTime;
+        uint256 activeHumans = registry.getActiveCount();
+        
+        if (activeHumans == 0) return;
+
+        uint256 budget = state.distribuableBalance * yieldRate * elapsed / (365 days);
+        uint256 perCapita = budget / activeHumans;
+
+        state.index += perCapita;
+        state.lastAccrualTime = block.timestamp;
+    }
+
+    /**
+     * @notice Cobra el dividendo acumulado
+     * @dev El usuario retira en la moneda que configure
+     */
+    function claim() external {
+        accrue();
+        
+        uint256 owed = state.index - lastClaimedIndex[msg.sender];
+        require(owed > 0, "No dividend to claim");
+
+        lastClaimedIndex[msg.sender] = state.index;
+        
+        // Transfer en la stablecoin configurada por el usuario
+        // Con fee abstraction (CIP-64), el gas se paga en esa misma moneda
+        stablecoin.transfer(msg.sender, owed);
+    }
+}
+
+/*
+CARACTERÍSTICAS CLAVE:
+
+1. Insolvencia imposible
+   - Distribuye una fracción del saldo existente
+   - Nunca un monto comprometido
+
+2. Costo constante por usuario
+   - El gas no depende del tamaño del padrón
+   - Ni del tiempo sin retirar
+
+3. Sin discrecionalidad
+   - El monto resulta de una división, no de una votación
+
+4. Perpetuidad viable
+   - Con tasa de giro < retorno real, el fondo es permanente
+   - Criterio del Alaska Permanent Fund
+
+Para el código completo, ver:
+https://github.com/artugrande/subi-concierge-agent
+*/
