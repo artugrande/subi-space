@@ -9,7 +9,9 @@
 const REGISTRY    = '0x72Aa7f3B4ca2c230cd710Ef847015f0B963F0232';
 const DISTRIBUTOR = '0x1f945618F4bFa0e131E07FfA0335e7Ada6556279';
 const RPC = 'https://forno.celo.org';
-const SEL = { activeCount:'0x4331ed1f', distributable:'0x6710fb28' };
+const TREASURY    = '0x093D55468acee5a9b11644d1E55097C4E99C2739';
+const RENUNCIA    = 'https://celoscan.io/tx/0x8ecd49fa96faf699fbe48c770d9828808b0db8444ef062685bdc4298f38e212a';
+const SEL = { activeCount:'0x4331ed1f', distributable:'0x6710fb28', owner:'0x8da5cb5b' };
 
 const $ = (id) => document.getElementById(id);
 
@@ -32,6 +34,12 @@ async function leerCadena() {
     $('mFondo').textContent = (Number(fondo) / 1e6).toLocaleString(
       document.documentElement.lang === 'en' ? 'en-US' : 'es-AR',
       { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' USDT';
+    // El dueño del treasury también se lee de la cadena: no es un texto que haya que creer.
+    const dueno = await call(TREASURY, SEL.owner);
+    const en = document.documentElement.lang === 'en';
+    $('mOwner').innerHTML = dueno === 0n
+      ? `<a href="${RENUNCIA}" target="_blank" rel="noopener">${en ? 'nobody' : 'nadie'} · 0x000…000</a>`
+      : '0x' + dueno.toString(16).padStart(40, '0');
     $('pill').classList.add('live');
   } catch (e) {
     $('pill').classList.remove('live');
@@ -61,6 +69,7 @@ const EN = {
     <div class="vrow"><span class="k">Agent ID · ERC-8004</span><span class="v big">9822</span></div>`,
   'k.tag': 'Attribution tag',
   'k.reg': 'Registry',
+  'k.own': 'Treasury owner',
   'k.tre': 'Treasury',
 
   'tracks': `
@@ -73,6 +82,7 @@ const EN = {
         <li>Registration happens only inside <code>customVerificationHook</code>. The unsafe function is not disabled: <b>it does not exist in the bytecode</b>.</li>
         <li>Gas is paid in the same stablecoin being claimed, so nobody needs to buy CELO.</li>
         <li>The dividend is not set, it is derived by dividing what exists among those who are in. <b>No token, no presale.</b></li>
+        <li><b>No owner.</b> Ownership of the treasury and the distributor was renounced on-chain: nobody, the author included, can move the fund or change the draw rate.</li>
       </ol>
       <div class="path-foot">
         <a href="/verify">Scan and join the register →</a>

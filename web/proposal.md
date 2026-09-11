@@ -172,7 +172,7 @@ Where:
 Properties that fall straight out of this formula:
 
 - **Insolvency is impossible.** It distributes a percentage of what exists, never a promised amount. If the treasury falls, the drip falls. If it rises, it rises.
-- **Zero discretion.** Nobody votes on how much each person gets. It comes out of a division.
+- **Zero discretion.** Nobody votes on how much each person gets: it comes out of a division. And nobody can change the draw rate, because the contract that applies it has no owner.
 - **Aligned and visible incentive.** When more people join the register, the per-capita falls. That is not a bug: it is precisely the signal that pushes towards recruiting more contributors, and it makes the pressure on companies legible and quantified. The home page can say, in real time: *"if SpaceX contributed 1% of its revenue, each person would receive X today instead of Y."*
 - **Perpetuity is possible.** With a draw rate below the real return, the fund becomes permanent and the dividend is forever.
 
@@ -197,7 +197,8 @@ Everything that matters is public by default and requires trusting nobody:
 - Today's per-capita and the historical series.
 - Every contribution, attributed to the contributor.
 - Every Pledge, with its quarterly compliance marked.
-- All contracts verified on Celoscan and Blockscout.
+- The source code of every contract, public on GitHub under the MIT licence.
+- **No human can move the fund.** On 11 September 2026 ownership of the treasury and the distributor was renounced on-chain: not even the author can redirect the funds or change the draw rate. Money only leaves when someone in the register claims.
 
 **An explicit design decision: SUBI issues no token.** There is no presale, no airdrop, no valuation, no treasury held in a token of its own. You contribute stablecoins and you are paid in stablecoins. This eliminates three problems at once: classification as a security, capture of the project by speculators, and the legitimate suspicion that there is a business hiding behind the philanthropy. It is the difference between a proposal a foreign minister can sign and one they cannot.
 
@@ -345,7 +346,7 @@ A fair criticism, and it deserves a direct answer. SUBI does not replace the fig
 True, and it is the design's most serious limitation. Self already supports more than 174 countries and documents such as Aadhaar, but there are undocumented populations (precisely the poorest). Phase 2 mitigation: integrating additional national documents and community attestation schemes. Acknowledging it is part of the proposal, not a footnote.
 
 **"The treasury will get hacked."**
-A real risk in any system holding funds on-chain. Mitigation: minimal contracts with no exotic functions, external audit before the pilot, a per-period draw limit encoded in the contract (even if the register is emptied, no more than the draw rate can be taken out), and a multisig treasury with a timelock during phases 0 to 2.
+A real risk in any system holding funds on-chain. Mitigation: minimal contracts with no exotic functions, external audit before the pilot, a per-period draw limit encoded in the contract (even if the register is emptied, no more than the draw rate can be taken out), and contracts with no owner: on 11 September 2026 ownership of the treasury and the distributor was renounced on-chain, so nobody, not even the author, can redirect the fund or change the rate.
 
 **"GoodDollar already exists."**
 It does, and it is a valuable precedent: GoodDollar has distributed a daily basic income on Celo since 2020. Proof of Humanity with the UBI token also exists, with Argentine roots in the work of Democracy Earth and Santiago Siri. SUBI differs in two ways: **the funding has a specific and legally grounded origin** (space resource rent under Article I, not the issuance of a token of its own), and **there is no token**. That makes it something a state can back without exposure.

@@ -172,7 +172,7 @@ Donde:
 Propiedades que caen solas de esta fórmula:
 
 - **Nunca hay insolvencia.** Se reparte un porcentaje de lo que hay, nunca un monto prometido. Si el treasury baja, el goteo baja. Si sube, sube.
-- **Cero discrecionalidad.** Nadie vota cuánto cobra cada uno. Sale de dividir.
+- **Cero discrecionalidad.** Nadie vota cuánto cobra cada uno: sale de dividir. Y nadie puede cambiar la tasa de giro, porque el contrato que la aplica no tiene dueño.
 - **Incentivo alineado y visible.** Cuando entra más gente al padrón, el per cápita baja. Eso no es un bug: es exactamente la señal que empuja a conseguir más aportantes, y hace que la presión sobre las empresas sea legible y cuantificada. La página de inicio puede decir en tiempo real: *"si SpaceX aportara el 1% de sus ingresos, hoy cada persona cobraría X en lugar de Y."*
 - **Perpetuidad posible.** Con tasa de giro por debajo del retorno real, el fondo se vuelve permanente y el dividendo es para siempre.
 
@@ -197,7 +197,8 @@ Todo lo que importa es público por defecto y no requiere confiar en nadie:
 - Per cápita del día y serie histórica.
 - Cada aporte, con atribución al aportante.
 - Cada Pledge, con su cumplimiento trimestral marcado.
-- Todos los contratos verificados en Celoscan y Blockscout.
+- El código fuente de cada contrato, público en GitHub con licencia MIT.
+- **Ningún humano puede mover el fondo.** El 11 de septiembre de 2026 se renunció on-chain al ownership del treasury y del distributor: ni el autor puede redirigir los fondos ni cambiar la tasa de giro. La plata solo sale cuando alguien del padrón cobra.
 
 **Decisión de diseño explícita: SUBI no emite token.** No hay preventa, no hay airdrop, no hay valuación, no hay tesorería en un activo propio. Se aporta stablecoin y se cobra stablecoin. Esto elimina de un saque tres problemas: la calificación regulatoria como valor negociable, la captura del proyecto por especuladores, y la sospecha legítima de que atrás hay un negocio disfrazado de filantropía. Es la diferencia entre una propuesta que un canciller puede firmar y una que no.
 
@@ -345,7 +346,7 @@ Es una crítica válida y hay que responderla de frente. SUBI no reemplaza la di
 Cierto, y es la limitación más seria del diseño. Self ya soporta más de 174 países y documentos como Aadhaar, pero hay poblaciones sin documentación (justamente las más pobres). Mitigación de fase 2: integrar documentos nacionales adicionales y esquemas de atestación comunitaria. Reconocerlo es parte de la propuesta, no una nota al pie.
 
 **"Van a hackear el treasury."**
-Riesgo real de cualquier sistema con fondos on-chain. Mitigación: contratos mínimos y sin funciones exóticas, auditoría externa antes del piloto, límite de giro por período codificado en el contrato (aunque se vacíe el registro, no se puede sacar más que la tasa de giro), y treasury en multisig con timelock durante las fases 0 a 2.
+Riesgo real de cualquier sistema con fondos on-chain. Mitigación: contratos mínimos y sin funciones exóticas, auditoría externa antes del piloto, límite de giro por período codificado en el contrato (aunque se vacíe el registro, no se puede sacar más que la tasa de giro), y contratos sin dueño: el 11 de septiembre de 2026 se renunció on-chain al ownership del treasury y del distributor, así que nadie, ni siquiera el autor, puede redirigir el fondo ni cambiar la tasa.
 
 **"Ya existe GoodDollar."**
 Sí, y es un antecedente valioso: GoodDollar reparte una renta básica diaria en Celo desde 2020. También existe Proof of Humanity con el token UBI, con raíz argentina en el trabajo de Democracy Earth y Santiago Siri. SUBI se diferencia en dos cosas: **el fondeo tiene un origen específico y legalmente fundamentado** (la renta de recursos espaciales bajo el Artículo I, no la emisión de un token propio), y **no hay token**. Eso lo convierte en algo que un Estado puede respaldar sin exponerse.
