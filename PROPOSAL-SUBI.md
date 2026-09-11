@@ -197,7 +197,7 @@ Everything that matters is public by default and requires trusting nobody:
 - Today's per-capita and the historical series.
 - Every contribution, attributed to the contributor.
 - Every Pledge, with its quarterly compliance marked.
-- The source code of every contract, public on GitHub under the MIT licence.
+- The source code of every contract, public on GitHub under the MIT licence and verified on Blockscout and Sourcify: anyone can check that what is deployed is exactly that.
 - **No human can move the fund.** On 11 September 2026 ownership of the treasury and the distributor was renounced on-chain: not even the author can redirect the funds or change the draw rate. Money only leaves when someone in the register claims.
 
 **An explicit design decision: SUBI issues no token.** There is no presale, no airdrop, no valuation, no treasury held in a token of its own. You contribute stablecoins and you are paid in stablecoins. This eliminates three problems at once: classification as a security, capture of the project by speculators, and the legitimate suspicion that there is a business hiding behind the philanthropy. It is the difference between a proposal a foreign minister can sign and one they cannot.

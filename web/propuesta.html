@@ -51,7 +51,7 @@
     <div class="meta">
       <span>Arturo Grande</span>
       <span>Salta, Argentina</span>
-      <span>5.807 palabras · ~29 min</span>
+      <span>5.822 palabras · ~29 min</span>
       <span>Salta, 11 al 13 de noviembre de 2026</span>
     </div>
   </div>
@@ -180,7 +180,7 @@ per_cápita = presupuesto_del_período / humanos_activos</code></pre>
 <p><strong>Padrón vencido</strong>: cuando alguien deja de renovar su prueba de vida, hay que bajar el contador de activos. En vez de un cron, se hace de forma perezosa con una función <code>reap()</code> sin permisos. Y hay una propiedad linda acá: mientras el contador esté sobreestimado, el sistema <strong>paga de menos, nunca de más</strong>. El error es conservador por construcción, así que la limpieza perezosa es segura.</p>
 <h3 id="3-5-capa-5-gobernanza-y-transparencia"><a class="anchor" href="#3-5-capa-5-gobernanza-y-transparencia">#</a>3.5 Capa 5: Gobernanza y transparencia</h3>
 <p>Todo lo que importa es público por defecto y no requiere confiar en nadie:</p>
-<ul><li>Balance del treasury, en vivo.</li><li>Padrón activo, en vivo (conteo agregado y por país, nunca identidades).</li><li>Per cápita del día y serie histórica.</li><li>Cada aporte, con atribución al aportante.</li><li>Cada Pledge, con su cumplimiento trimestral marcado.</li><li>El código fuente de cada contrato, público en GitHub con licencia MIT.</li><li><strong>Ningún humano puede mover el fondo.</strong> El 11 de septiembre de 2026 se renunció on-chain al ownership del treasury y del distributor: ni el autor puede redirigir los fondos ni cambiar la tasa de giro. La plata solo sale cuando alguien del padrón cobra.</li></ul>
+<ul><li>Balance del treasury, en vivo.</li><li>Padrón activo, en vivo (conteo agregado y por país, nunca identidades).</li><li>Per cápita del día y serie histórica.</li><li>Cada aporte, con atribución al aportante.</li><li>Cada Pledge, con su cumplimiento trimestral marcado.</li><li>El código fuente de cada contrato, público en GitHub con licencia MIT y verificado en Blockscout y Sourcify: cualquiera puede comprobar que lo desplegado es exactamente eso.</li><li><strong>Ningún humano puede mover el fondo.</strong> El 11 de septiembre de 2026 se renunció on-chain al ownership del treasury y del distributor: ni el autor puede redirigir los fondos ni cambiar la tasa de giro. La plata solo sale cuando alguien del padrón cobra.</li></ul>
 <p><strong>Decisión de diseño explícita: SUBI no emite token.</strong> No hay preventa, no hay airdrop, no hay valuación, no hay tesorería en un activo propio. Se aporta stablecoin y se cobra stablecoin. Esto elimina de un saque tres problemas: la calificación regulatoria como valor negociable, la captura del proyecto por especuladores, y la sospecha legítima de que atrás hay un negocio disfrazado de filantropía. Es la diferencia entre una propuesta que un canciller puede firmar y una que no.</p>
 <hr>
 <h2 id="4-la-arquitectura-tecnica"><a class="anchor" href="#4-la-arquitectura-tecnica">#</a>4. La arquitectura técnica</h2>

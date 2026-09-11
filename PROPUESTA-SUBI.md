@@ -197,7 +197,7 @@ Todo lo que importa es público por defecto y no requiere confiar en nadie:
 - Per cápita del día y serie histórica.
 - Cada aporte, con atribución al aportante.
 - Cada Pledge, con su cumplimiento trimestral marcado.
-- El código fuente de cada contrato, público en GitHub con licencia MIT.
+- El código fuente de cada contrato, público en GitHub con licencia MIT y verificado en Blockscout y Sourcify: cualquiera puede comprobar que lo desplegado es exactamente eso.
 - **Ningún humano puede mover el fondo.** El 11 de septiembre de 2026 se renunció on-chain al ownership del treasury y del distributor: ni el autor puede redirigir los fondos ni cambiar la tasa de giro. La plata solo sale cuando alguien del padrón cobra.
 
 **Decisión de diseño explícita: SUBI no emite token.** No hay preventa, no hay airdrop, no hay valuación, no hay tesorería en un activo propio. Se aporta stablecoin y se cobra stablecoin. Esto elimina de un saque tres problemas: la calificación regulatoria como valor negociable, la captura del proyecto por especuladores, y la sospecha legítima de que atrás hay un negocio disfrazado de filantropía. Es la diferencia entre una propuesta que un canciller puede firmar y una que no.

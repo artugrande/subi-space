@@ -41,6 +41,7 @@ a QR code: Self's relayer submits the proof, and the contract registers whoever 
 | SubiTreasury | `0x093D55468acee5a9b11644d1E55097C4E99C2739` |
 | PledgeRegistry | `0x642b4F2737E85f42bae5Fc4830544EBCf48F1F13` |
 
+The source of all four is verified on [Blockscout](https://celo.blockscout.com/address/0x72Aa7f3B4ca2c230cd710Ef847015f0B963F0232#code) (full match) and Sourcify (exact match), and none of them can be changed: the treasury and the distributor have no owner.
 The canonical list is `deployment-mainnet.json` in the agent repo.
 
 ## Deploy
