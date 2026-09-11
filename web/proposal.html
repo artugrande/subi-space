@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUBI · The full proposal</title>
+<meta name="description" content="A public proposal for shared sovereignty over the resources of space: mechanism, technical architecture, numbers and roadmap. Document for Argentina Space 2026.">
+<meta property="og:title" content="SUBI · The full proposal">
+<meta property="og:description" content="A public proposal for shared sovereignty over the resources of space. Working document for Argentina Space 2026.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://subi.space/proposal">
+<link rel="canonical" href="https://subi.space/proposal">
+<link rel="alternate" hreflang="en" href="https://subi.space/proposal">
+<link rel="alternate" hreflang="es" href="https://subi.space/propuesta">
+<meta property="og:image" content="https://subi.space/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=34">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body class="paper">
+
+<nav style="position:sticky;top:0;z-index:40;background:rgba(7,11,20,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:13px;padding-bottom:13px">
+    <a href="/" aria-label="SUBI" style="display:flex;align-items:center;gap:12px;border-bottom:none">
+      <img src="logo/mark-sm.png" alt="" width="96" height="103" style="width:24px;height:auto">
+      <img src="logo/wordmark-only.png" alt="" width="240" height="62" style="width:68px;height:auto">
+    </a>
+    <div style="display:flex;align-items:center;gap:26px">
+      <div class="navlinks">
+        <a href="/">← Back to the project</a>
+        <a href="/demo">Demo</a>
+        <a href="/proposal.md">Download .md</a>
+      </div>
+      <div class="lang">
+        <a href="/propuesta" >ES</a>
+        <a href="/proposal" class="on">EN</a>
+      </div>
+    </div>
+  </div>
+  <div style="height:1px;background:var(--line);margin-top:-1px"><i id="prog" style="display:block;height:1px;width:0;background:var(--gold)"></i></div>
+</nav>
+
+<header class="paper-head">
+  <div class="wrap">
+    <div class="eyebrow"><span>Working document · Argentina Space 2026</span></div>
+    <h1>A public proposal for shared sovereignty over the resources of space</h1>
+    <p class="sub">SUBI · Space Universal Basic Income</p>
+    <div class="meta">
+      <span>Arturo Grande</span>
+      <span>Salta, Argentina</span>
+      <span>5,449 words · ~27 min read</span>
+      <span>Salta, 11 to 13 November 2026</span>
+    </div>
+  </div>
+</header>
+
+<div class="paper-body wrap">
+  <aside class="toc">
+    <div class="toc-title">Contents</div>
+    <nav id="toc">
+      <a href="#0-the-thesis-in-one-paragraph" class="t2" data-id="0-the-thesis-in-one-paragraph">The thesis in one paragraph</a>
+      <a href="#1-the-gap-subi-exists-to-fill" class="t2" data-id="1-the-gap-subi-exists-to-fill">The gap SUBI exists to fill</a>
+      <a href="#1-1-what-the-treaties-say" class="t3" data-id="1-1-what-the-treaties-say">What the treaties say</a>
+      <a href="#1-2-what-states-did-in-the-meantime" class="t3" data-id="1-2-what-states-did-in-the-meantime">What states did in the meantime</a>
+      <a href="#1-3-the-political-window-opening-now" class="t3" data-id="1-3-the-political-window-opening-now">The political window opening now</a>
+      <a href="#2-the-other-half-of-the-problem-ai-and-the-decoupling-of-inc" class="t2" data-id="2-the-other-half-of-the-problem-ai-and-the-decoupling-of-inc">The other half of the problem: AI and the decoupling of income from employment</a>
+      <a href="#2-1-the-evidence-that-direct-transfers-work" class="t3" data-id="2-1-the-evidence-that-direct-transfers-work">The evidence that direct transfers work</a>
+      <a href="#3-the-mechanism" class="t2" data-id="3-the-mechanism">The mechanism</a>
+      <a href="#3-1-layer-1-identity-with-self" class="t3" data-id="3-1-layer-1-identity-with-self">Layer 1: Identity, with Self</a>
+      <a href="#3-2-layer-2-the-on-chain-register" class="t3" data-id="3-2-layer-2-the-on-chain-register">Layer 2: The on-chain register</a>
+      <a href="#3-3-layer-3-treasury-and-the-space-dividend-pledge" class="t3" data-id="3-3-layer-3-treasury-and-the-space-dividend-pledge">Layer 3: Treasury and the Space Dividend Pledge</a>
+      <a href="#3-4-layer-4-daily-distribution" class="t3" data-id="3-4-layer-4-daily-distribution">Layer 4: Daily distribution</a>
+      <a href="#3-5-layer-5-governance-and-transparency" class="t3" data-id="3-5-layer-5-governance-and-transparency">Layer 5: Governance and transparency</a>
+      <a href="#4-the-technical-architecture" class="t2" data-id="4-the-technical-architecture">The technical architecture</a>
+      <a href="#4-1-why-celo-specifically" class="t3" data-id="4-1-why-celo-specifically">Why Celo, specifically</a>
+      <a href="#4-1-1-the-payout-currency-and-why-the-argentine-case-solved-" class="t3" data-id="4-1-1-the-payout-currency-and-why-the-argentine-case-solved-">The payout currency, and why the Argentine case solved itself</a>
+      <a href="#4-2-the-contracts" class="t3" data-id="4-2-the-contracts">The contracts</a>
+      <a href="#4-3-the-user-flow-end-to-end" class="t3" data-id="4-3-the-user-flow-end-to-end">The user flow, end to end</a>
+      <a href="#5-the-numbers" class="t2" data-id="5-the-numbers">The numbers</a>
+      <a href="#5-1-how-much-money-there-really-is" class="t3" data-id="5-1-how-much-money-there-really-is">How much money there really is</a>
+      <a href="#5-2-sensitivity-table" class="t3" data-id="5-2-sensitivity-table">Sensitivity table</a>
+      <a href="#5-3-what-that-table-says" class="t3" data-id="5-3-what-that-table-says">What that table says</a>
+      <a href="#5-4-the-pilot-with-numbers-that-add-up" class="t3" data-id="5-4-the-pilot-with-numbers-that-add-up">The pilot, with numbers that add up</a>
+      <a href="#6-roadmap" class="t2" data-id="6-roadmap">Roadmap</a>
+      <a href="#7-objections-and-honest-answers" class="t2" data-id="7-objections-and-honest-answers">Objections, and honest answers</a>
+      <a href="#8-the-specific-ask-at-argentina-space-2026" class="t2" data-id="8-the-specific-ask-at-argentina-space-2026">The specific ask at Argentina Space 2026</a>
+      <a href="#9-why-this-is-defensible-and-not-a-fantasy" class="t2" data-id="9-why-this-is-defensible-and-not-a-fantasy">Why this is defensible and not a fantasy</a>
+      <a href="#10-authorship" class="t2" data-id="10-authorship">Authorship</a>
+      <a href="#sources" class="t2" data-id="sources">Sources</a>
+    </nav>
+  </aside>
+  <article class="prose" id="prose">
+<h2 id="0-the-thesis-in-one-paragraph"><a class="anchor" href="#0-the-thesis-in-one-paragraph">#</a>0. The thesis in one paragraph</h2>
+<p>International law already recognises that the resources of space belong to all of humanity. What has never existed is the technical infrastructure that makes that recognition effective for an actual person. At the same time, AI automation is weakening the link between income and employment for hundreds of millions of people. SUBI connects the two ends: an open, verifiable infrastructure with no speculative token, where any company or agency earning revenue from the exploration or exploitation of space can deposit a percentage of that profit, and any person with an identity document can prove they are a unique human being (without revealing who they are) and collect their share every day. The stack already exists and is in production: Self for zero-knowledge identity, Celo for stablecoin settlement at marginal cost.</p>
+<p>The name is deliberate. In Spanish, <em>subí</em> reads as an invitation: get on board.</p>
+<hr>
+<h2 id="1-the-gap-subi-exists-to-fill"><a class="anchor" href="#1-the-gap-subi-exists-to-fill">#</a>1. The gap SUBI exists to fill</h2>
+<h3 id="1-1-what-the-treaties-say"><a class="anchor" href="#1-1-what-the-treaties-say">#</a>1.1 What the treaties say</h3>
+<p>The <strong>1967 Outer Space Treaty</strong> (ratified by Argentina and by the 115 principal parties) establishes in <strong>Article I</strong> that the exploration and use of outer space "shall be carried out for the benefit and in the interests of all countries, irrespective of their degree of economic or scientific development, and shall be the province of all mankind". <strong>Article II</strong> prohibits national appropriation.</p>
+<p>The <strong>1979 Moon Agreement</strong> tried to go further and declared lunar resources the "common heritage of mankind", requiring an international regime to govern their extraction. It failed: no spacefaring power (not the United States, Russia, China, India, Japan, nor any EU state) ratified it, precisely because the common-heritage clause was read as incompatible with commercial extraction.</p>
+<p>The result: there is a benefit-sharing obligation in Article I, and <strong>zero infrastructure to fulfil it</strong>. No court, no collecting body, no register of recipients, no payment channel.</p>
+<h3 id="1-2-what-states-did-in-the-meantime"><a class="anchor" href="#1-2-what-states-did-in-the-meantime">#</a>1.2 What states did in the meantime</h3>
+<ul><li><strong>2015</strong>, USA: the <em>Commercial Space Launch Competitiveness Act</em> grants US companies ownership of the resources they extract from asteroids and the Moon.</li><li><strong>2017</strong>, Luxembourg; <strong>2019</strong>, United Arab Emirates: equivalent laws.</li><li><strong>2020</strong>, <strong>Artemis Accords</strong>, Section 10: signatories "affirm that the extraction of space resources does not inherently constitute national appropriation under Article II of the Outer Space Treaty".</li><li><strong>Argentina signs the Artemis Accords on 27 July 2023</strong>, at Casa Rosada, as the 28th country and the fifth in Latin America.</li></ul>
+<p>In other words: the world has already settled the easy half of the question (you may extract and sell). It never settled the other half (how the benefit of all humanity in Article I is actually delivered).</p>
+<h3 id="1-3-the-political-window-opening-now"><a class="anchor" href="#1-3-the-political-window-opening-now">#</a>1.3 The political window opening now</h3>
+<p>UNCOPUOS's <strong>Working Group on Legal Aspects of Space Resource Activities</strong>, created in 2021, closes its five-year plan in <strong>2027</strong> with a set of recommended principles for possible adoption as a UN General Assembly resolution.</p>
+<p>Argentina Space 2026 takes place in <strong>November 2026</strong>. The window to put a concrete benefit-sharing mechanism into that process is exactly now.</p>
+<blockquote><strong>SUBI's diplomatic positioning is not antagonistic to Artemis. It is complementary.</strong> It does not ask anyone to ratify the Moon Agreement, and it does not dispute the right to extract. It holds that if extraction is lawful (Artemis, Section 10), then Article I remains in force and needs an implementation. SUBI is that implementation: voluntary, auditable, and already built.</blockquote>
+<hr>
+<h2 id="2-the-other-half-of-the-problem-ai-and-the-decoupling-of-inc"><a class="anchor" href="#2-the-other-half-of-the-problem-ai-and-the-decoupling-of-inc">#</a>2. The other half of the problem: AI and the decoupling of income from employment</h2>
+<p>The urgency does not come from space. It comes from the labour market.</p>
+<div class="tw"><table><thead><tr><th>Study</th><th>Finding</th></tr></thead><tbody><tr><td><strong>IMF</strong>, Staff Discussion Note SDN/2024/001, <em>Gen-AI: Artificial Intelligence and the Future of Work</em> (Cazzaniga, Jaumotte, Li, Melina, Panton, Pizzinelli, Rockall, Tavares, January 2024)</td><td>Around <strong>40% of global employment</strong> is exposed to AI. In advanced economies it rises to ~60%, in low-income economies ~26%. AI tends to <strong>widen inequality</strong> between and within countries.</td></tr><tr><td><strong>World Economic Forum</strong>, <em>Future of Jobs Report 2025</em> (January 2025, 1,000+ employers, 14 million workers, 55 economies)</td><td>By 2030: <strong>170 million jobs created, 92 million displaced</strong>, net +78 million, but with structural churn of <strong>22% of the 1.2 billion formal jobs</strong> analysed and ~40% of skills changing.</td></tr><tr><td><strong>Goldman Sachs Global Investment Research</strong> (2023)</td><td>The equivalent of <strong>300 million full-time jobs</strong> exposed to automation.</td></tr><tr><td><strong>Frey &amp; Osborne</strong>, Oxford (2013)</td><td>The foundational work: 47% of US employment in the high-risk category.</td></tr></tbody></table></div>
+<p>The point is not the exact number, nor whether the net is positive. <strong>The point is the churn.</strong> 22% structural churn over seven years means hundreds of millions of people will go through periods without income, and that social protection systems tied to formal employment (which in Argentina covers less than half of all workers) will not reach them.</p>
+<h3 id="2-1-the-evidence-that-direct-transfers-work"><a class="anchor" href="#2-1-the-evidence-that-direct-transfers-work">#</a>2.1 The evidence that direct transfers work</h3>
+<ul><li><strong>GiveDirectly, Kenya</strong>: the largest and longest-running basic income study ever conducted. Since 2017, around 23,000 people across 195 villages, plus 100 control villages. The main group receives <strong>USD 22.50 a month for twelve years</strong>, and there are comparison groups receiving the same for two years and others receiving a single lump sum. Central result: <strong>no reduction in work and no increase in alcohol consumption was recorded</strong>. Recipients invested more, started more businesses and raised their incomes. Sustained monthly transfers improve food security; the lump sum does more for long-term investment.</li><li><strong>Alaska Permanent Fund</strong>: since 1982, a sovereign natural-resource fund (today ~USD 83 billion) has paid an annual dividend to every resident. In 2025 it was <strong>USD 1,000 to more than 600,000 people</strong>. It is the living precedent that resource rent can become a universal dividend, unconditional and with cross-party political acceptance for over forty years.</li></ul>
+<p><strong>SUBI is the Alaska Permanent Fund of space, with the register open to all of humanity and the accounting in a public ledger anyone can audit.</strong></p>
+<hr>
+<h2 id="3-the-mechanism"><a class="anchor" href="#3-the-mechanism">#</a>3. The mechanism</h2>
+<p>Five layers. Each solves a specific problem and is built from pieces that exist and work today.</p>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│  LAYER 5   Governance and transparency                      │
+│            Public dashboard, auditable reports              │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 4   Daily distribution                               │
+│            Per-capita drip, claim on demand                 │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 3   Treasury and commitments                         │
+│            Space Dividend Pledge, corporate contributions   │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 2   On-chain register                                │
+│            Record of living, active humans                  │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 1   Identity                                         │
+│            Self: ZK passport proof, unique nullifier        │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+<h3 id="3-1-layer-1-identity-with-self"><a class="anchor" href="#3-1-layer-1-identity-with-self">#</a>3.1 Layer 1: Identity, with Self</h3>
+<p>The requirement is strict: <strong>one person, one payout</strong>, without building a global biometric database and without anyone having to hand their personal data to anyone.</p>
+<p>Self solves exactly that. It is an open-source identity protocol, founded by former members of Celo's core team, which acquired OpenPassport. It works like this:</p>
+<ol><li>The user scans the <strong>NFC chip of their passport</strong> (or Aadhaar, or equivalent documents) with their phone. Support for more than 174 countries.</li><li>The phone locally generates a <strong>zero-knowledge proof</strong> that the document is valid and signed by the issuing authority. <strong>The document never leaves the device.</strong></li><li>The proof produces a <strong>nullifier</strong>: a unique, deterministic identifier derived from the document that reveals nothing about it. The same passport always produces the same nullifier for a given <code>scope</code>.</li><li>The <code>scope</code> is derived by hashing (Poseidon) a seed chosen by the app together with the contract address. This guarantees that a SUBI nullifier <strong>cannot be correlated</strong> with that of any other application using Self.</li><li>The user chooses what to disclose. For SUBI it is enough to prove: <strong>legal age as a ZK predicate</strong> (<code>age &gt;= 18</code>, without revealing the date of birth) and optionally the <strong>country code</strong> (only for aggregate statistics and for jurisdictional pilots). <strong>Nothing else. No name, no document number, no date of birth, no photograph.</strong></li></ol>
+<p>What SUBI stores on-chain per person is: a nullifier, a payout address, a timestamp and a two-letter country code. That is all.</p>
+<blockquote><strong>Why this is not Worldcoin.</strong> SUBI requires no proprietary biometric hardware, does not scan irises, does not create a speculative token, and does not give any company custody of a biometric database. It uses the document your state already gave you. The distinction matters in Argentina, where the orb model drew regulatory and data-protection objections. SUBI is designed so that the answer to "what data do they take" is, literally, none.</blockquote>
+<h3 id="3-2-layer-2-the-on-chain-register"><a class="anchor" href="#3-2-layer-2-the-on-chain-register">#</a>3.2 Layer 2: The on-chain register</h3>
+<p>The <code>SubiRegistry</code> contract inherits from <code>SelfVerificationRoot</code> (the abstract contract in Self's SDK that connects an app to the Identity Verification Hub V2). On validating a proof, the hub calls the contract's <code>customVerificationHook</code> with the disclosed and verified attributes.</p>
+<p>Rules of the register:</p>
+<div class="tw"><table><thead><tr><th>Rule</th><th>Implementation</th><th>Why</th></tr></thead><tbody><tr><td>One human, one seat</td><td><code>mapping(uint256 nullifier =&gt; address)</code></td><td>Anti-sybil</td></tr><tr><td>Address rebinding</td><td>New proof from the physical document + 30-day cooldown</td><td>Lost phone or lost keys</td></tr><tr><td>Proof of life</td><td>Expires after 12 months, renewable with a new proof</td><td>Prevents payouts to dead or inherited accounts</td></tr><tr><td>Voluntary exit</td><td><code>renounce()</code> frees the seat</td><td>The right to leave</td></tr><tr><td>Non-transferable</td><td>The seat is not an NFT and cannot be sold</td><td>Prevents secondary markets in payout rights</td></tr></tbody></table></div>
+<p>On selling rights: it is not perfectly preventable, but the design makes it expensive. Buying someone's flow requires physically holding their document continuously and renewing the proof every twelve months. It is a possible attack but not a scalable one, and that is all you can ask of a system like this. I state it explicitly because any serious auditor will ask.</p>
+<h3 id="3-3-layer-3-treasury-and-the-space-dividend-pledge"><a class="anchor" href="#3-3-layer-3-treasury-and-the-space-dividend-pledge">#</a>3.3 Layer 3: Treasury and the Space Dividend Pledge</h3>
+<p>The <code>SubiTreasury</code> contract custodies stablecoins (USDC, USDT or Mento's USDm) and is <strong>open-entry</strong>: anyone can contribute, without permission.</p>
+<p>On top of it sits the layer that makes this a public proposal rather than just a contract: the <strong>Space Dividend Pledge</strong>.</p>
+<p>A company or agency signs a public commitment on-chain in this form:</p>
+<pre><code>Organisation:        [name + on-chain identity]
+Commitment:          X% of net revenue derived from
+                     space resource activities
+Annual floor:        USD N (minimum guarantee, independent of results)
+Term:                [start] to [end], renewable
+Verification:        hash of the audited report, published
+                     quarterly against the contract
+Non-compliance:      publicly visible on the dashboard,
+                     with no legal sanction</code></pre>
+<p><strong>No legal force, on purpose.</strong> A new treaty takes decades and dies in ratification (see: the Moon Agreement). The Pledge does not ask for coercive power, it asks for <strong>legibility</strong>: who committed, who complied, who did not, all in a public ledger nobody can edit. That is the only enforcement mechanism that works on reasonable timescales for global private actors, and it works through reputation, not sanction.</p>
+<p>Plausible contributors, in order of ease:</p>
+<ol><li><strong>National space agencies</strong>, with a fraction of technology-licensing returns (for CONAE this is a low-cost position of diplomatic leadership).</li><li><strong>Satellite constellation and Earth observation operators</strong>, who already have revenue today and represent 70%+ of the real space economy.</li><li><strong>Launch and orbital logistics companies</strong>, including SpaceX.</li><li><strong>Asteroid and lunar resource miners</strong>, once they have revenue. This is the emblematic case and the one that will contribute the least money over the next decade.</li><li><strong>Philanthropic funds and states</strong> wanting to capitalise the fund before space rent exists, so the rail is proven when it arrives.</li></ol>
+<h3 id="3-4-layer-4-daily-distribution"><a class="anchor" href="#3-4-layer-4-daily-distribution">#</a>3.4 Layer 4: Daily distribution</h3>
+<p>This is the technical heart and the part I thought about most. The requirement: <strong>the system can never become insolvent, it must require no discretionary decisions about the amount, and the cost of operating it must be negligible.</strong></p>
+<p>The solution is not to set the amount. <strong>Derive it.</strong></p>
+<pre><code>period_budget = distributable_funds × draw_rate × (Δt / 365 days)
+
+per_capita    = period_budget / active_humans</code></pre>
+<p>Where:</p>
+<ul><li><code>distributable_funds</code> = treasury balance minus what has already accrued and not been claimed</li><li><code>draw_rate</code> = an annual percentage, for example 4% (the same criterion as Alaska's POMV, which draws 5% of average market value)</li><li><code>active_humans</code> = the size of the current register</li></ul>
+<p>Properties that fall straight out of this formula:</p>
+<ul><li><strong>Insolvency is impossible.</strong> It distributes a percentage of what exists, never a promised amount. If the treasury falls, the drip falls. If it rises, it rises.</li><li><strong>Zero discretion.</strong> Nobody votes on how much each person gets. It comes out of a division.</li><li><strong>Aligned and visible incentive.</strong> When more people join the register, the per-capita falls. That is not a bug: it is precisely the signal that pushes towards recruiting more contributors, and it makes the pressure on companies legible and quantified. The home page can say, in real time: <em>"if SpaceX contributed 1% of its revenue, each person would receive X today instead of Y."</em></li><li><strong>Perpetuity is possible.</strong> With a draw rate below the real return, the fund becomes permanent and the dividend is forever.</li></ul>
+<p><strong>Accumulated-index accounting.</strong> The obvious design mistake would be to iterate over the register to pay each person. With 10 million people that is impossible. Instead the accumulated-index pattern is used:</p>
+<ul><li>The contract maintains a single global <code>accIndex</code>, representing what a hypothetical human present since inception would have received.</li><li>Each user has a <code>checkpoint</code>.</li><li>On claiming, they receive <code>accIndex - checkpoint[user]</code>, and their checkpoint is updated.</li></ul>
+<p>Gas cost is <strong>O(1) per user, independent of how many days have passed without claiming and of how many people are in the register</strong>. Someone can disappear for a year and come back, and their claim costs the same as someone who claims daily.</p>
+<p><strong>A solvency detail that has to be handled</strong>: <code>distributable_funds</code> must subtract what has accrued and not been claimed, otherwise the same money is counted twice. It is resolved in the contract skeleton accompanying this document.</p>
+<p><strong>Expired register entries</strong>: when someone stops renewing their proof of life, the active counter has to come down. Instead of a cron job, this is done lazily through a permissionless <code>reap()</code> function. And there is a nice property here: while the counter is overestimated, the system <strong>underpays, never overpays</strong>. The error is conservative by construction, so lazy cleanup is safe.</p>
+<h3 id="3-5-layer-5-governance-and-transparency"><a class="anchor" href="#3-5-layer-5-governance-and-transparency">#</a>3.5 Layer 5: Governance and transparency</h3>
+<p>Everything that matters is public by default and requires trusting nobody:</p>
+<ul><li>Treasury balance, live.</li><li>Active register, live (aggregate count and by country, never identities).</li><li>Today's per-capita and the historical series.</li><li>Every contribution, attributed to the contributor.</li><li>Every Pledge, with its quarterly compliance marked.</li><li>All contracts verified on Celoscan and Blockscout.</li></ul>
+<p><strong>An explicit design decision: SUBI issues no token.</strong> There is no presale, no airdrop, no valuation, no treasury held in a token of its own. You contribute stablecoins and you are paid in stablecoins. This eliminates three problems at once: classification as a security, capture of the project by speculators, and the legitimate suspicion that there is a business hiding behind the philanthropy. It is the difference between a proposal a foreign minister can sign and one they cannot.</p>
+<hr>
+<h2 id="4-the-technical-architecture"><a class="anchor" href="#4-the-technical-architecture">#</a>4. The technical architecture</h2>
+<h3 id="4-1-why-celo-specifically"><a class="anchor" href="#4-1-why-celo-specifically">#</a>4.1 Why Celo, specifically</h3>
+<p>This is not a preference, it is a physical constraint of the problem. If the daily dividend is cents, <strong>the network fee has to be a fraction of a cent or the system does not exist</strong>. A USD 2 fee makes distributing 3 cents a day mathematically impossible.</p>
+<div class="tw"><table><thead><tr><th>SUBI's requirement</th><th>What Celo provides</th></tr></thead><tbody><tr><td>Fee smaller than the amount distributed</td><td>~USD 0.0005 per transaction, ~1 second blocks</td></tr><tr><td>The user does not have to buy a gas token</td><td><strong>Fee abstraction (CIP-64)</strong>: gas is paid in the same USDC or USDm being claimed. Critical for someone with no bank and no exchange</td></tr><tr><td>Stable and local currency</td><td>31 stablecoins, including 15 from Mento and Ripio's 6 wFIAT (see 4.1.1)</td></tr><tr><td>A distribution channel that already exists</td><td><strong>MiniPay: 11 million wallets, 300+ million stablecoin transactions, 60+ countries</strong>, running inside Opera Mini in emerging markets</td></tr><tr><td>Identity already lives here</td><td>Self is native to Celo. On-chain attestations anchor on Celo</td></tr><tr><td>Reach without a new app</td><td>ODIS and SocialConnect allow resolving a phone number to an address</td></tr></tbody></table></div>
+<p>That combination of six things is not available on any other network today. The MiniPay point is the most underrated: <strong>the distribution channel into the markets where basic income matters most is already deployed and has 11 million users.</strong> SUBI does not have to build adoption, it has to appear in a catalogue.</p>
+<h3 id="4-1-1-the-payout-currency-and-why-the-argentine-case-solved-"><a class="anchor" href="#4-1-1-the-payout-currency-and-why-the-argentine-case-solved-">#</a>4.1.1 The payout currency, and why the Argentine case solved itself</h3>
+<p>The choice of settlement currency decides whether the dividend arrives as purchasing power or as an unusable balance. Paying everything in dollars transfers currency risk to whoever can least absorb it (someone paid in dollars who spends in local currency holds a short position against their own currency and pays a spread on every conversion). Paying everything in local currency, in a high-inflation economy, erodes purchasing power between payout and spending. <strong>So SUBI does not fix the currency: the user does.</strong> The treasury is denominated in dollars, because space rent is invoiced in dollars, and settlement goes out in whichever currency each person configures.</p>
+<p>On 31 July 2026, <strong>Ripio deployed its wFIAT stack on Celo</strong>: six Latin American stablecoins with <strong>zero-cost on and off ramps</strong>, among them <strong>wARS</strong> (Argentine peso), wBRL, wMXN, wCOP, wCLP and wPEN. With that addition Celo reaches <strong>31 stablecoins</strong>. Each wARS is backed 1:1 by pesos in reserves held at regulated financial institutions, with independent attestation by local public accountants. Ripio has operated since 2013 and reports more than 25 million users across seven countries.</p>
+<p>The operational consequence for the pilot is direct: <strong>an Argentine participant can receive their dividend in wARS and convert it to pesos with no ramp cost</strong>, through an Argentine platform with an installed user base. The last leg towards consumption, which is where most digital transfer pilots fail, is solved without building anything.</p>
+<p>To that add Mento's 15 local-currency stablecoins, with an on-chain swap inside the same claim transaction, and CIP-64 fee abstraction, which allows paying gas in the same stablecoin being claimed. For someone with no bank account and no access to an exchange, that last piece is the difference between being able to collect and not.</p>
+<h3 id="4-2-the-contracts"><a class="anchor" href="#4-2-the-contracts">#</a>4.2 The contracts</h3>
+<pre><code>SubiRegistry.sol      is SelfVerificationRoot
+                      The register. Nullifier to address, expiry,
+                      rebinding, renunciation, reap.
+
+SubiTreasury.sol      Stablecoin custody. Open contributions.
+                      Attribution ledger per contributor.
+
+SubiDistributor.sol   Accumulated index, accrual, claim on demand.
+                      Single source of truth for solvency.
+
+PledgeRegistry.sol    Public commitments to contribute, hashes of
+                      audited reports, compliance status.</code></pre>
+<p>Four contracts. None exotic. All the real risk is concentrated in the distributor's arithmetic, which is auditable in an afternoon.</p>
+<p><code>contracts/SubiDistributor.sol</code> in this folder holds the skeleton with the full accrual logic, commented, so it can be read and audited without installing anything.</p>
+<p>On the addresses of Self's Identity Verification Hub V2 on Celo: <strong>take them from Self's official documentation at the time of deployment, not from this document.</strong> The public deployed-contracts page I consulted still lists the legacy (V1) addresses. Putting a wrong address in a contract that moves funds is the most common way to lose money, so no guessed address appears here.</p>
+<h3 id="4-3-the-user-flow-end-to-end"><a class="anchor" href="#4-3-the-user-flow-end-to-end">#</a>4.3 The user flow, end to end</h3>
+<pre><code>1. Opens subi.space (or the Mini App inside MiniPay)
+2. Scans their passport chip with the phone
+   → the ZK proof is generated on the device
+3. The proof is verified on-chain against Self's hub
+   → SubiRegistry registers them. One transaction, once.
+4. Claims whenever they want. Daily, weekly, or when they remember.
+   → gas is paid in the same stablecoin being claimed
+5. At 12 months, renews their proof of life.</code></pre>
+<p>Five steps. No bank, no third-party KYC, no personal data handed to anyone, no gas token to buy.</p>
+<hr>
+<h2 id="5-the-numbers"><a class="anchor" href="#5-the-numbers">#</a>5. The numbers</h2>
+<p>This is the part where most proposals of this kind lie. I would rather put the uncomfortable numbers up front, because they are what makes everything else credible.</p>
+<h3 id="5-1-how-much-money-there-really-is"><a class="anchor" href="#5-1-how-much-money-there-really-is">#</a>5.1 How much money there really is</h3>
+<p>The most-cited projection (<strong>World Economic Forum with McKinsey, April 2024</strong>) puts the space economy at <strong>USD 1.8 trillion a year by 2035</strong>, up from ~630 billion in 2024. An honest warning: the sectors that capture the imagination (asteroid mining, lunar extraction, helium-3, orbital manufacturing) <strong>are not the ones generating that number</strong>. They are aspirational additions. The bulk is satellite constellations, Earth observation and connectivity. Other consultancies project considerably less, in the range of 850 to 935 billion.</p>
+<h3 id="5-2-sensitivity-table"><a class="anchor" href="#5-2-sensitivity-table">#</a>5.2 Sensitivity table</h3>
+<p>Annual contribution to the treasury as a percentage of a USD 1.8 trillion space economy, divided across different register sizes. Annual dividend per person, in dollars:</p>
+<div class="tw"><table><thead><tr><th>Register</th><th>0.5% contribution (USD 9.0B)</th><th>1% (USD 18.0B)</th><th>3% (USD 54.0B)</th><th>5% (USD 90.0B)</th></tr></thead><tbody><tr><td><strong>10 million</strong></td><td>900</td><td>1,800</td><td>5,400</td><td>9,000</td></tr><tr><td><strong>100 million</strong></td><td>90</td><td>180</td><td>540</td><td>900</td></tr><tr><td><strong>1 billion</strong></td><td>9</td><td>18</td><td>54</td><td>90</td></tr><tr><td><strong>6.6 billion</strong> (adults, 2035)</td><td>1.36</td><td>2.73</td><td>8.18</td><td>13.64</td></tr></tbody></table></div>
+<h3 id="5-3-what-that-table-says"><a class="anchor" href="#5-3-what-that-table-says">#</a>5.3 What that table says</h3>
+<p><strong>The bad news, which has to come first:</strong> a 5% levy on the entire 2035 space economy, divided among every adult on the planet, gives <strong>USD 13.64 a year</strong>. Three and a half cents a day. That is not a basic income, it is a gesture.</p>
+<p><strong>The good news:</strong> that same 5% divided among <strong>100 million people</strong> gives <strong>USD 900 a year, USD 2.47 a day</strong>, above the World Bank's extreme poverty line (USD 2.15 a day). That does change lives.</p>
+<p><strong>The three conclusions that follow:</strong></p>
+<ol><li><strong>SUBI cannot be universal and meaningful at the same time, yet.</strong> You have to choose. The recommendation is to start targeted (the lowest income deciles, or pilot jurisdictions) with the universal register <strong>open from day one</strong>, and universalise the amount as the fund grows. It is exactly Alaska's path: it started small and became structural.</li><li><strong>SUBI's value in 2026 is not the amount. It is the rail and the precedent.</strong> The existence of a working, audited mechanism with real people being paid changes the conversation at UNCOPUOS from "benefit sharing would be desirable" to "benefit sharing is already operating, are you joining?". That difference is worth more than any 2026 amount.</li><li><strong>In a perpetual endowment model, the scale is measured in decades.</strong> To pay USD 1 a day to a billion people permanently at a 4% draw rate requires a fund of <strong>USD 9.1 trillion</strong>. It is a generational project, as the Norwegian fund was. Promising otherwise would be lying.</li></ol>
+<h3 id="5-4-the-pilot-with-numbers-that-add-up"><a class="anchor" href="#5-4-the-pilot-with-numbers-that-add-up">#</a>5.4 The pilot, with numbers that add up</h3>
+<div class="tw"><table><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Register</td><td>1,000 people verified with Self, Argentina</td></tr><tr><td>Treasury</td><td>USD 500,000 in USDC on Celo</td></tr><tr><td>Payout currency</td><td>wARS, with a zero-cost off-ramp via Ripio</td></tr><tr><td>Duration</td><td>12 months, with an explicit end date</td></tr><tr><td>Dividend</td><td><strong>USD 1.37 a day, ~USD 41 a month</strong></td></tr><tr><td>Comparable</td><td>GiveDirectly Kenya pays USD 22.50 a month</td></tr><tr><td>Total gas cost</td><td>~USD 1,825 a year, conservative scenario</td></tr><tr><td><strong>Infrastructure overhead</strong></td><td><strong>0.37% of what is distributed</strong></td></tr></tbody></table></div>
+<p>That last number is the strongest argument in the whole proposal and it is worth saying slowly: <strong>distributing money to a thousand people every day, for a year, with cryptographic identity verification and publicly auditable accounting, costs less than 0.4% of the amount distributed.</strong> Traditional assistance programmes operate with overheads of 10 to 30%. If claims are weekly rather than daily, it falls below 0.06%.</p>
+<p>And the pilot generates publishable data: effects on food security, employment and mental health, with a control group, replicating GiveDirectly's methodology. That turns the pilot into a paper, and the paper into the argument for scaling.</p>
+<hr>
+<h2 id="6-roadmap"><a class="anchor" href="#6-roadmap">#</a>6. Roadmap</h2>
+<div class="tw"><table><thead><tr><th>Phase</th><th>When</th><th>What</th></tr></thead><tbody><tr><td><strong>0. Prototype</strong></td><td>Now to October 2026</td><td>Four contracts on Celo Sepolia, Self integration, public dashboard, audit of the distributor</td></tr><tr><td><strong>1. Presentation</strong></td><td><strong>Argentina Space 2026</strong>, Salta, 11 to 13 November</td><td>Live demo. The Space Dividend Pledge opens for signature. Argentine position paper</td></tr><tr><td><strong>2. Pilot</strong></td><td>2027</td><td>1,000 people, 12 months, with an evaluation protocol and an academic institution as auditor</td></tr><tr><td><strong>3. Diplomacy</strong></td><td>2027</td><td>Presentation to the UNCOPUOS Working Group <strong>ahead of its final report</strong></td></tr><tr><td><strong>4. Regional scale</strong></td><td>2028</td><td>Register opened to Latin America via MiniPay. First corporate contributors</td></tr><tr><td><strong>5. Open global register</strong></td><td>2029+</td><td>No jurisdictional restriction. The amount is determined by the fund</td></tr></tbody></table></div>
+<hr>
+<h2 id="7-objections-and-honest-answers"><a class="anchor" href="#7-objections-and-honest-answers">#</a>7. Objections, and honest answers</h2>
+<p><strong>"No company will contribute voluntarily."</strong> Most probably will not. But the cost of contributing 0.5% is marginal compared with what these companies spend on social licence, and the Pledge offers something you cannot buy today: public, verifiable proof of compliance with Article I. The asymmetry also works in its favour: <strong>a single organisation contributing is enough for the mechanism to exist and for everyone else to be on the record as absent.</strong></p>
+<p><strong>"This is charity, not sovereignty."</strong> A fair criticism, and it deserves a direct answer. SUBI does not replace the fight for a binding international regime, it enables it. A working mechanism with people actually being paid is a fait accompli that changes the starting point of any negotiation. The realistic alternative is not a binding regime tomorrow, it is nothing for another twenty years.</p>
+<p><strong>"People without a passport are left out."</strong> True, and it is the design's most serious limitation. Self already supports more than 174 countries and documents such as Aadhaar, but there are undocumented populations (precisely the poorest). Phase 2 mitigation: integrating additional national documents and community attestation schemes. Acknowledging it is part of the proposal, not a footnote.</p>
+<p><strong>"The treasury will get hacked."</strong> A real risk in any system holding funds on-chain. Mitigation: minimal contracts with no exotic functions, external audit before the pilot, a per-period draw limit encoded in the contract (even if the register is emptied, no more than the draw rate can be taken out), and a multisig treasury with a timelock during phases 0 to 2.</p>
+<p><strong>"GoodDollar already exists."</strong> It does, and it is a valuable precedent: GoodDollar has distributed a daily basic income on Celo since 2020. Proof of Humanity with the UBI token also exists, with Argentine roots in the work of Democracy Earth and Santiago Siri. SUBI differs in two ways: <strong>the funding has a specific and legally grounded origin</strong> (space resource rent under Article I, not the issuance of a token of its own), and <strong>there is no token</strong>. That makes it something a state can back without exposure.</p>
+<p><strong>"Why crypto and not a bank transfer?"</strong> Because the register is global and no bank operates globally without friction; because the cost per transfer has to be a fraction of a cent; because public auditability of the treasury is the only substitute for a coercive power that does not exist; and because 40% of the target population has no bank account but does have a phone.</p>
+<hr>
+<h2 id="8-the-specific-ask-at-argentina-space-2026"><a class="anchor" href="#8-the-specific-ask-at-argentina-space-2026">#</a>8. The specific ask at Argentina Space 2026</h2>
+<p>A proposal without a specific ask is a talk. Here is the ask, and it is three things:</p>
+<p><strong>1. That Argentina take an operationalisable benefit-sharing proposal to UNCOPUOS.</strong> The Working Group on Legal Aspects of Space Resource Activities closes in 2027 with recommended principles. Argentina, an Artemis signatory since 2023 and holding a seat at COPUOS, is positioned to propose that those principles include a <strong>voluntary benefit-sharing mechanism with individual recipients</strong>, not only technology transfer between states. It is a position no other country has taken and one that costs nothing to hold.</p>
+<p><strong>2. That Argentina offer itself as the pilot jurisdiction.</strong> CONAE as institutional counterpart, a national university as independent auditor, a thousand people in the register. Argentina as the first place in the world where someone collected a space dividend. The cost is low, the diplomatic visibility is high, and it fits the doctrine that space development is a state policy.</p>
+<p><strong>3. That the Space Dividend Pledge open for signature in Salta.</strong> With the companies, agencies and universities present at the event. Even if the first commitment is symbolic, the on-chain register is open from that day, and dated.</p>
+<hr>
+<h2 id="9-why-this-is-defensible-and-not-a-fantasy"><a class="anchor" href="#9-why-this-is-defensible-and-not-a-fantasy">#</a>9. Why this is defensible and not a fantasy</h2>
+<p>I will close with what, in my judgement, makes this proposal hold up in front of a technical and sceptical audience:</p>
+<ol><li><strong>It invents no law.</strong> It rests on Article I of the 1967 Treaty, in force and ratified by all. It does not ask for the Moon Agreement to be ratified and does not dispute Artemis.</li><li><strong>It invents no technology.</strong> Self, Celo, MiniPay and the stablecoins exist, are deployed and have real users today. There is no piece left to invent.</li><li><strong>It invents no evidence.</strong> Alaska has paid a resource dividend for 44 years. GiveDirectly has spent nine years measuring what happens when you give money unconditionally. Both answers are in.</li><li><strong>It invents no business.</strong> No token, no equity, no fee. That makes it signable by a state.</li><li><strong>It does not exaggerate the numbers.</strong> The sensitivity table says plainly that a universal dividend in 2035 is cents. The value is in the rail and the precedent, and that can be defended without lying.</li><li><strong>The timing is real.</strong> UNCOPUOS closes in 2027. Argentina Space is in November 2026. The window is open now and closes on its own.</li></ol>
+<hr>
+<h2 id="10-authorship"><a class="anchor" href="#10-authorship">#</a>10. Authorship</h2>
+<p>SUBI is <strong>an original idea by Arturo Grande</strong>. The mechanism, the legal framing and this document are his work, and are published openly so they can be discussed, criticised and adopted by any body or jurisdiction wishing to implement them.</p>
+<p><strong>Arturo Grande</strong> (Salta, 1995). Product Builder specialising in AI, fintech and Web3.</p>
+<ul><li>Led product and marketing at <a href="https://www.eluter.com/" target="_blank" rel="noopener">Eluter</a>, an international payments fintech that grew from USD 5 million to USD 65 million in monthly processed volume.</li><li>Founder of <a href="https://desafia.tech/" target="_blank" rel="noopener">DESAFIA</a>, an education platform for building digital products with AI.</li><li>Professor of Digital Business (<a href="https://www.ucema.edu.ar/" target="_blank" rel="noopener">UCEMA</a>) and Cryptoeconomics (<a href="https://www.uncuyo.edu.ar/" target="_blank" rel="noopener">UNCUYO</a>).</li><li>Digital products used in more than 40 countries.</li><li>Winner of 11 international hackathons: Celo, ETHGlobal (Filecoin Track), Avalanche, Worldcoin, Stellar, Filecoin, GenLayer, ARKIV, PL Genesis, Aleph Hackathon and BNB Chain.</li><li>Creator of <a href="https://www.youtube.com/@artugrande/streams" target="_blank" rel="noopener">Builders OFF the Record</a> and the <a href="https://open.spotify.com/show/3nMj6xYsjwIvofrWg2IvIA" target="_blank" rel="noopener">Artu Grande podcast</a>. More than 300,000 plays.</li><li>Ambassador for <a href="https://cursor.com/" target="_blank" rel="noopener">Cursor</a> (recently acquired by SpaceX), <a href="https://v0.app/" target="_blank" rel="noopener">v0 (Vercel)</a> and <a href="https://celo.org/" target="_blank" rel="noopener">Celo</a>. Graduate of the Polkadot Blockchain Academy and a Devconnect 2025 Scholar (Ethereum Foundation).</li></ul>
+<p><a href="https://arturogrande.com/" target="_blank" rel="noopener">arturogrande.com</a></p>
+<hr>
+<h2 id="sources"><a class="anchor" href="#sources">#</a>Sources</h2>
+<p><strong>Space law</strong></p>
+<ul><li><a href="https://www.nasa.gov/history/SP-4225/documentation/cooperation/treaty.htm" target="_blank" rel="noopener">Outer Space Treaty 1967, full text (NASA)</a></li><li><a href="https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/intromoon-agreement.html" target="_blank" rel="noopener">Moon Agreement 1979 (UNOOSA)</a></li><li><a href="https://www.planetary.org/articles/what-is-the-outer-space-treaty" target="_blank" rel="noopener">What is the Outer Space Treaty (The Planetary Society)</a></li><li><a href="https://www.nasa.gov/wp-content/uploads/2022/11/Artemis-Accords-signed-13Oct2020.pdf" target="_blank" rel="noopener">Artemis Accords, text signed 13 Oct 2020 (NASA, PDF)</a></li><li><a href="https://www.nasa.gov/news-release/nasa-welcomes-argentina-as-newest-artemis-accords-signatory" target="_blank" rel="noopener">Argentina signs the Artemis Accords, 27 Jul 2023 (NASA)</a></li><li><a href="https://www.unoosa.org/oosa/en/ourwork/copuos/lsc/space-resources/index.html" target="_blank" rel="noopener">Working Group on Legal Aspects of Space Resource Activities (UNOOSA)</a></li><li><a href="https://www.ejiltalk.org/uncopuos-and-the-quiet-transformation-of-space-resources-law/" target="_blank" rel="noopener">UNCOPUOS and the quiet transformation of space resources law (EJIL: Talk!)</a></li><li><a href="https://e-revistas.uc3m.es/index.php/CDT/en/article/view/8947" target="_blank" rel="noopener">Section 10 of the Artemis Accords, analysis (Cuadernos de Derecho Transnacional)</a></li></ul>
+<p><strong>AI and the future of work</strong></p>
+<ul><li><a href="https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf" target="_blank" rel="noopener">IMF, SDN/2024/001, <em>Gen-AI: Artificial Intelligence and the Future of Work</em> (PDF)</a></li><li><a href="https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf" target="_blank" rel="noopener">WEF, <em>Future of Jobs Report 2025</em> (full PDF)</a></li><li><a href="https://www.weforum.org/press/2025/01/future-of-jobs-report-2025-78-million-new-job-opportunities-by-2030-but-urgent-upskilling-needed-to-prepare-workforces/" target="_blank" rel="noopener">WEF, Future of Jobs Report 2025 press release</a></li></ul>
+<p><strong>Basic income evidence</strong></p>
+<ul><li><a href="https://www.givedirectly.org/basic-income/" target="_blank" rel="noopener">GiveDirectly, early findings from the 12-year Kenya study</a></li><li><a href="https://poverty-action.org/effects-universal-basic-income-kenya" target="_blank" rel="noopener">Innovations for Poverty Action, <em>The Effects of a Universal Basic Income in Kenya</em></a></li><li><a href="https://mitsloan.mit.edu/ideas-made-to-matter/12-year-study-looks-effects-universal-basic-income" target="_blank" rel="noopener">MIT Sloan, analysis of the 12-year study</a></li><li><a href="https://pfd.alaska.gov/" target="_blank" rel="noopener">Alaska Permanent Fund Dividend, official site</a></li><li><a href="https://alaskabeacon.com/briefs/alaskas-2025-permanent-fund-dividend-will-be-1000-and-arrives-starting-oct-2/" target="_blank" rel="noopener">The 2025 dividend of USD 1,000 (Alaska Beacon)</a></li></ul>
+<p><strong>Space economy</strong></p>
+<ul><li><a href="https://www.mckinsey.com/featured-insights/themes/the-space-economy-is-projected-to-reach-1-8-trillion-by-2035" target="_blank" rel="noopener">McKinsey and WEF, the space economy towards USD 1.8 trillion by 2035</a></li></ul>
+<p><strong>Technical stack</strong></p>
+<ul><li><a href="https://docs.self.xyz/" target="_blank" rel="noopener">Self Protocol, documentation</a></li><li><a href="https://docs.self.xyz/contract-integration/basic-integration" target="_blank" rel="noopener">Self, contract integration (SelfVerificationRoot)</a></li><li><a href="https://docs.celo.org/build-on-celo/build-with-self" target="_blank" rel="noopener">Celo Docs, build with Self</a></li><li><a href="https://blog.celo.org/self-protocol-a-sybil-resistant-identity-primitive-for-real-people-launches-following-acquisition-74fd3461a428" target="_blank" rel="noopener">Self Protocol launch (Celo Blog)</a></li><li><a href="https://app.mento.org" target="_blank" rel="noopener">Mento, local currency stablecoins</a></li><li><a href="https://docs.celo.org" target="_blank" rel="noopener">Celo Docs</a></li></ul>
+<p><strong>Latin American stablecoins (Ripio's wFIAT)</strong></p>
+<ul><li><a href="https://blog.celo.org/ripio-deploys-wfiat-stack-on-celo-with-no-cost-on-off-ramps-expanding-the-leading-stablecoin-9f801b82b899" target="_blank" rel="noopener">Ripio deploys the wFIAT stack on Celo with no-cost on/off ramps, July 2026 (Celo Blog)</a></li><li><a href="https://blockchain.news/news/ripio-wfiat-stablecoins-celo-integration" target="_blank" rel="noopener">Launch coverage (Blockchain.News)</a></li><li><a href="https://cdn.prod.website-files.com/5f17344acf2c6d3c3a1d6238/691c742cb3658e24e24f7a3f_wFIAT%20-%20Whitepaper.pdf" target="_blank" rel="noopener">wFIAT, whitepaper (Ripio, October 2025)</a></li><li><a href="https://www.coindesk.com/markets/2025/11/01/latin-american-crypto-exchange-ripio-launches-argentine-peso-stablecoin-wars" target="_blank" rel="noopener">Ripio launches wARS (CoinDesk)</a></li><li><a href="https://action.ripio.com/en/blog/chainlink-and-ripio-launch-wars-usd-and-wbrl-usd-price-feeds-bringing-latin-american-currencies-to-defi" target="_blank" rel="noopener">Chainlink and Ripio, ARS/USD and BRL/USD price feeds</a></li><li><a href="https://www.ripio.com/en/cryptos/local-stablecoins" target="_blank" rel="noopener">Ripio, Latin American local stablecoins</a></li></ul>
+<p><strong>Precedents</strong></p>
+<ul><li><a href="https://www.gooddollar.org" target="_blank" rel="noopener">GoodDollar, basic income on Celo since 2020</a></li><li><a href="https://proofofhumanity.id" target="_blank" rel="noopener">Proof of Humanity</a></li></ul>
+<p><strong>The event</strong></p>
+<ul><li><a href="https://argentinaspace.com/" target="_blank" rel="noopener">Argentina Space 2026, official site</a></li><li><a href="https://www.eltribuno.com/salta/2026-1-12-8-43-0-argentina-space-2026-el-gran-encuentro-del-nuevo-ecosistema-espacial-tecnologico-e-industrial-se-realizara-en-salta" target="_blank" rel="noopener">Argentina Space 2026 in Salta, 11 to 13 November (El Tribuno)</a></li></ul>
+  </article>
+</div>
+
+<footer class="paper-foot">
+  <div class="wrap">
+    <p>SUBI · Space Universal Basic Income. Working document and public proposal. No token, no presale and not for profit.</p>
+    <div class="cta-row" style="margin-top:20px">
+      <a href="/" class="btn">Back to the project</a>
+      <a href="/demo" class="btn">See the demo</a>
+      <a href="/proposal.md" class="btn">Download as Markdown</a>
+    </div>
+  </div>
+</footer>
+
+<script src="paper.js?v=32"></script>
+</body>
+</html>

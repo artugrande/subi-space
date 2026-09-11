@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUBI · Panel</title>
+<meta name="description" content="Conectá tu billetera, mirá el fondo en vivo, cobrá tu dividendo y aportá al treasury de SUBI en Celo mainnet.">
+<meta property="og:title" content="SUBI · Panel">
+<meta property="og:description" content="El fondo en vivo, tu dividendo acumulado y el aporte al treasury, desde tu billetera.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://subi.space/dashboard">
+<link rel="canonical" href="https://subi.space/dashboard">
+<meta property="og:image" content="https://subi.space/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=34">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo/mark-sm.png">
+</head>
+<body>
+
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none">
+  <div style="position:absolute;inset:0;opacity:.45;background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 140px 90px,rgba(255,255,255,.35) 50%,transparent 51%),radial-gradient(1px 1px at 260px 40px,rgba(255,255,255,.28) 50%,transparent 51%);background-size:320px 280px"></div>
+  <div style="position:absolute;top:-30vh;left:50%;width:150vw;height:110vh;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(111,211,216,.08),transparent 70%)"></div>
+</div>
+
+<div style="position:relative;z-index:1">
+
+<nav style="position:sticky;top:0;z-index:40;background:rgba(7,11,20,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:14px;padding-bottom:14px">
+    <a href="/" aria-label="SUBI" style="display:flex;align-items:center;gap:12px;border-bottom:none">
+      <img src="logo/mark-sm.png" alt="" width="96" height="103" style="width:26px;height:auto">
+      <img src="logo/wordmark-only.png" alt="" width="240" height="62" style="width:74px;height:auto">
+    </a>
+    <div style="display:flex;align-items:center;gap:26px">
+      <div class="navlinks" data-i18n="nav">
+        <a href="/demo">← Volver a la demo</a>
+        <a href="/verify">Verificarte</a>
+        <a href="/">El proyecto</a>
+      </div>
+      <div class="lang">
+        <button data-lang="es" class="on">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="wrap" style="padding-top:clamp(46px,6.5vh,76px);padding-bottom:6px">
+  <div class="badge" data-i18n="hero.badge"><i></i> Celo mainnet · chain 42220</div>
+  <h1 data-i18n="hero.h" style="font-family:var(--serif);font-weight:300;font-size:clamp(34px,5.2vw,60px);line-height:1.04;letter-spacing:-.025em;margin:26px 0 18px;max-width:18ch">
+    El fondo, tu dividendo y el aporte, en vivo
+  </h1>
+  <p class="lead" data-i18n="hero.lead" style="max-width:64ch">
+    Todo lo que ves acá sale de leer Celo mainnet en este momento, no de una base de datos nuestra.
+    Conectá tu billetera para cobrar o aportar. El sitio no custodia nada ni guarda tus llaves.
+  </p>
+</header>
+
+<section style="border-top:none;padding-top:30px;padding-bottom:56px">
+  <div class="wrap">
+
+    <!-- ---------- barra de conexión ---------- -->
+    <div class="dbar">
+      <div class="dwho" id="who" data-i18n="who.off">Sin billetera conectada</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn primary" id="btnConnect" data-i18n="btn.connect">Conectar billetera</button>
+        <a class="btn" href="/verify" data-i18n="btn.verify">Verificarte con Self</a>
+      </div>
+    </div>
+    <div class="dstatus" id="status" style="display:none"></div>
+
+    <!-- ---------- el fondo ---------- -->
+    <h2 style="margin-top:52px" data-i18n="fund.h">El fondo, ahora</h2>
+    <div class="dgrid" data-i18n="fund.cards">
+      <div class="dcard">
+        <div class="cap">Treasury</div>
+        <div class="dbig" id="mTreasury">…</div>
+        <div class="dunit">USDT en custodia</div>
+        <p class="dnote">Entrada abierta: cualquiera puede aportar, sin permiso.</p>
+      </div>
+      <div class="dcard">
+        <div class="cap">Distribuible</div>
+        <div class="dbig" id="mDist">…</div>
+        <div class="dunit">USDT · ya descontado lo devengado</div>
+        <p class="dnote">Esto es lo que el distribuidor ve, contando el treasury.</p>
+      </div>
+      <div class="dcard">
+        <div class="cap">Padrón activo</div>
+        <div class="dbig mint" id="mPadron">…</div>
+        <div class="dunit">personas verificadas con Self</div>
+        <p class="dnote">El dividendo se divide entre estas personas, no entre una lista fija.</p>
+      </div>
+      <div class="dcard">
+        <div class="cap">Dividendo por persona</div>
+        <div class="dbig mint" id="mPerCapita">…</div>
+        <div class="dunit">USDT por día, al ritmo de giro actual</div>
+        <p class="dnote" id="mFormula">No se fija: sale de dividir.</p>
+      </div>
+    </div>
+
+    <!-- ---------- tu posición ---------- -->
+    <h2 style="margin-top:64px" data-i18n="you.h">Tu posición</h2>
+    <div class="dgrid" data-i18n="you.cards">
+      <div class="dcard">
+        <div class="cap">Acumulado para cobrar</div>
+        <div class="dbig" id="mClaimable">—</div>
+        <div class="dunit">USDT disponibles ahora</div>
+        <p class="dnote" id="mYouState">Conectá tu billetera para ver tu posición.</p>
+        <button class="btn primary" id="btnClaim" disabled style="margin-top:18px" data-i18n="btn.claim">Cobrar</button>
+      </div>
+      <div class="dcard">
+        <div class="cap">Aportar al treasury</div>
+        <p class="dnote" style="margin-top:0;margin-bottom:12px">Cualquier monto en USDT. Queda registrado on-chain con la atribución que pongas.</p>
+        <input id="amt" class="vinput" placeholder="0.10" inputmode="decimal" autocomplete="off" style="margin-top:0">
+        <input id="attr" class="vinput" placeholder="tu nombre u organización (opcional)" autocomplete="off" maxlength="60">
+        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+          <button class="btn" id="btnApprove" disabled data-i18n="btn.approve">1 · Autorizar</button>
+          <button class="btn primary" id="btnDeposit" disabled data-i18n="btn.deposit">2 · Aportar</button>
+        </div>
+        <p class="dnote" id="mAllowance">Tu balance y tu autorización aparecen al conectar.</p>
+      </div>
+      <div class="dcard">
+        <div class="cap">Cobrar en tu moneda</div>
+        <p class="dnote" style="margin-top:0;margin-bottom:12px">Cambiá tu USDT por la moneda del lugar donde vivís. Una sola transacción, en Uniswap sobre Celo.</p>
+        <select id="moneda" class="vinput" style="margin-top:0"></select>
+        <input id="swapAmt" class="vinput" placeholder="0.10" inputmode="decimal" autocomplete="off">
+        <p class="dnote" id="mQuote" style="margin-top:12px;min-height:2.6em">Poné un monto para ver la cotización.</p>
+        <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <button class="btn" id="btnApproveSwap" disabled>1 · Autorizar</button>
+          <button class="btn primary" id="btnSwap" disabled>2 · Cambiar</button>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:44px;font-size:14.5px;color:var(--txt-3);max-width:74ch" data-i18n="foot.note">
+      Las transacciones que sale a firmar esta página llevan la etiqueta de atribución del proyecto
+      (ERC-8021) en el calldata. No llevan <code>feeCurrency</code>: la abstracción de comisiones de
+      CIP-64 la soportan MiniPay y Valora, pero MetaMask rechaza el campo, así que desde una
+      billetera de escritorio el gas se paga en CELO. Nada de lo que hay acá custodia fondos: la
+      página arma la transacción y la firma tu billetera.
+    </p>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:48px 0 56px;background:var(--ink2)">
+  <div class="wrap">
+    <p style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--txt-3);max-width:none" data-i18n="foot.legal">
+      SUBI · Space Universal Basic Income. Sin token, sin preventa y sin fines de lucro.
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script src="dashboard.js?v=36"></script>
+</body>
+</html>

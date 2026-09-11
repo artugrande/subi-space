@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Versión reducida del emblema para tamaños chicos: se conservan el anillo,
+       la órbita con sus nodos y la estrella. El globo y los rayos se eliminan
+       porque a 16px se convierten en ruido. -->
+  <g fill="none" stroke="#FFC94A" stroke-width="4" stroke-linecap="round">
+    <circle cx="32" cy="37" r="20"/>
+    <ellipse cx="32" cy="40" rx="27" ry="8.5" transform="rotate(-13 32 40)"/>
+  </g>
+  <g fill="#FFC94A">
+    <circle cx="7.5" cy="44.5" r="3"/>
+    <circle cx="32" cy="48.5" r="3"/>
+    <circle cx="56.5" cy="35.5" r="3"/>
+    <path d="M32 0 L34.4 8.6 L43 11 L34.4 13.4 L32 22 L29.6 13.4 L21 11 L29.6 8.6 Z"/>
+  </g>
+</svg>

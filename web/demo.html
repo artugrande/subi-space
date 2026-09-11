@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUBI Concierge Agent · Demo</title>
+<meta name="description" content="Recorrido ilustrado del SUBI Concierge Agent: verificar identidad con Self, aportar al treasury y cobrar el dividendo, con abstracción de comisiones en Celo.">
+<meta property="og:title" content="SUBI Concierge Agent · Demo">
+<meta property="og:description" content="Celo Agents at Work · Judges' Favorite. El flujo completo del agente, paso a paso.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://subi.space/demo">
+<link rel="canonical" href="https://subi.space/demo">
+<meta property="og:image" content="https://subi.space/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=35">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo/mark-sm.png">
+</head>
+<body>
+
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none">
+  <div style="position:absolute;inset:0;opacity:.5;background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 140px 90px,rgba(255,255,255,.35) 50%,transparent 51%),radial-gradient(1px 1px at 260px 40px,rgba(255,255,255,.28) 50%,transparent 51%),radial-gradient(1px 1px at 70px 190px,rgba(255,255,255,.4) 50%,transparent 51%);background-size:320px 280px"></div>
+  <div style="position:absolute;top:-30vh;left:50%;width:150vw;height:110vh;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(111,211,216,.08),transparent 70%)"></div>
+</div>
+
+<div style="position:relative;z-index:1">
+
+<nav style="position:sticky;top:0;z-index:40;background:rgba(7,11,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:14px;padding-bottom:14px">
+    <a href="/" aria-label="SUBI" style="display:flex;align-items:center;gap:12px;border-bottom:none">
+      <img src="logo/mark-sm.png" alt="" width="96" height="103" style="width:26px;height:auto">
+      <img src="logo/wordmark-only.png" alt="" width="240" height="62" style="width:74px;height:auto">
+    </a>
+    <div style="display:flex;align-items:center;gap:26px">
+      <div class="navlinks" data-i18n="nav">
+        <a href="/">← Volver al proyecto</a>
+        <a href="#flujo">El flujo</a>
+        <a href="#onchain">On-chain</a>
+        <a href="#probar">Probarlo</a>
+        <a href="#mcp">MCP</a>
+        <a href="#piloto">El piloto</a>
+      </div>
+      <div class="lang">
+        <button data-lang="es" class="on">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="wrap" style="padding-top:clamp(50px,7vh,84px);padding-bottom:clamp(30px,4vh,48px)">
+  <div class="badge" data-i18n="hero.badge"><i></i> Celo Agents at Work · Judges' Favorite</div>
+  <h1 data-i18n="hero.h" style="font-family:var(--serif);font-weight:300;font-size:clamp(34px,5.4vw,64px);line-height:1.05;letter-spacing:-.025em;margin:26px 0 20px;max-width:18ch">
+    SUBI Concierge Agent
+  </h1>
+  <p class="lead" data-i18n="hero.lead">
+    Un agente conversacional que lleva a una persona de cero a cobrar su dividendo espacial:
+    verificar identidad con Self, aportar al treasury y retirar, sin tener que comprar un token
+    de red para pagar el gas.
+  </p>
+</header>
+
+<!-- ============ FLUJO ============ -->
+<section id="flujo" style="border-top:none;padding-top:20px">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="flow.eyebrow">El flujo, paso a paso</span></div>
+
+    <div class="stage">
+      <!-- chat -->
+      <div class="phone">
+        <div class="phone-bar">
+          <div class="av"></div>
+          <div>
+            <div class="who">SUBI Concierge</div>
+            <div class="st" data-i18n="flow.online">● en línea · agent 9822</div>
+          </div>
+        </div>
+        <div class="chat" id="chat"></div>
+      </div>
+
+      <!-- terminal -->
+      <div class="term">
+        <div class="term-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="path">celo mainnet · chain 42220</span>
+        </div>
+        <div class="term-body" id="term"></div>
+      </div>
+    </div>
+
+    <div class="steps-nav" id="stepsNav"></div>
+
+    <div class="playbar">
+      <button class="playbtn primary" id="playBtn">❚❚ Pausar</button>
+      <button class="playbtn" id="restartBtn">↻ Reiniciar</button>
+      <span class="hint" data-i18n="flow.hint">Hacé clic en cualquier paso para saltar ahí.</span>
+    </div>
+
+    <p class="disclaimer" data-i18n="flow.disc" style="margin-top:22px">
+      Recorrido ilustrado del flujo del agente. Las direcciones y los contratos son reales y están
+      en Celo mainnet; las transacciones que se muestran acá son una reconstrucción, no una
+      ejecución en vivo.
+    </p>
+  </div>
+</section>
+
+<!-- ============ ON-CHAIN ============ -->
+<section id="onchain">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="oc.eyebrow">On-chain</span></div>
+    <h2 data-i18n="oc.h">Lo que está desplegado de verdad</h2>
+
+    <div class="factgrid" data-i18n="oc.facts">
+      <div class="fact"><div class="v">4</div><div class="l">contratos en<br>Celo mainnet</div></div>
+      <div class="fact"><div class="v">9822</div><div class="l">agent ID<br>ERC-8004</div></div>
+      <div class="fact"><div class="v">Self</div><div class="l">identidad verificada<br>con prueba ZK</div></div>
+      <div class="fact"><div class="v">13</div><div class="l">monedas locales<br>de cobro</div></div>
+    </div>
+
+    <div style="margin-top:30px">
+      <div class="addr"><span class="lbl">SubiRegistry</span><span class="hex">0x72Aa7f3B4ca2c230cd710Ef847015f0B963F0232</span><a href="https://celoscan.io/address/0x72Aa7f3B4ca2c230cd710Ef847015f0B963F0232">Celoscan ↗</a></div>
+      <div class="addr"><span class="lbl">SubiTreasury</span><span class="hex">0x093D55468acee5a9b11644d1E55097C4E99C2739</span><a href="https://celoscan.io/address/0x093D55468acee5a9b11644d1E55097C4E99C2739">Celoscan ↗</a></div>
+      <div class="addr"><span class="lbl">SubiDistributor</span><span class="hex">0x1f945618F4bFa0e131E07FfA0335e7Ada6556279</span><a href="https://celoscan.io/address/0x1f945618F4bFa0e131E07FfA0335e7Ada6556279">Celoscan ↗</a></div>
+      <div class="addr"><span class="lbl">PledgeRegistry</span><span class="hex">0x642b4F2737E85f42bae5Fc4830544EBCf48F1F13</span><a href="https://celoscan.io/address/0x642b4F2737E85f42bae5Fc4830544EBCf48F1F13">Celoscan ↗</a></div>
+      <div class="addr"><span class="lbl">Hub de Self</span><span class="hex">0xe57F4773bd9c9d8b6Cd70431117d353298B9f5BF</span><a href="https://celoscan.io/address/0xe57F4773bd9c9d8b6Cd70431117d353298B9f5BF">Celoscan ↗</a></div>
+      <div class="addr"><span class="lbl">Agent wallet</span><span class="hex">0x35422f585e1f570515147E557aEF8fD6a6e1b3b3</span><a href="https://celoscan.io/address/0x35422f585e1f570515147E557aEF8fD6a6e1b3b3">Celoscan ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRES MANERAS DE PROBARLO ============ -->
+<section id="probar">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="try.eyebrow">Probarlo</span></div>
+    <h2 data-i18n="try.h">Tres maneras de probar la demo</h2>
+    <p class="lead" data-i18n="try.lead">
+      Son caminos independientes: podés recorrer uno solo. Los dos primeros tocan contratos que ya
+      están en Celo mainnet.
+    </p>
+
+    <div class="cta-row" style="margin-top:30px" data-i18n="try.cta">
+      <a href="/verify" class="btn primary">Verificar y empezar a recibir tu renta básica →</a>
+      <a href="/dashboard" class="btn">Abrir el panel con tu billetera</a>
+    </div>
+
+    <div class="grid g3" style="margin-top:34px" data-i18n="try.paths">
+      <div class="path">
+        <div class="path-n">A</div>
+        <h4>Aportar al treasury</h4>
+        <div class="who">Para empresas, agencias y cualquiera con USDT en Celo</div>
+        <ol class="path-steps">
+          <li>Tener USDT en Celo. <b>No hace falta CELO</b> para el gas.</li>
+          <li>Aprobar el gasto al contrato del treasury.</li>
+          <li>Llamar a <code>deposit(monto, "tu atribución")</code>.</li>
+          <li>El aporte queda con tu nombre en el ledger público.</li>
+        </ol>
+        <div class="path-foot">
+          <a href="https://celoscan.io/address/0x093D55468acee5a9b11644d1E55097C4E99C2739#writeContract">Escribir en el contrato ↗</a>
+        </div>
+      </div>
+
+      <div class="path">
+        <div class="path-n">B</div>
+        <h4>Verificarte y cobrar el SUBI</h4>
+        <div class="who">Para cualquier persona con documento</div>
+        <ol class="path-steps">
+          <li>Escaneás tu documento con la app de Self. La prueba se genera <b>en tu teléfono</b>.</li>
+          <li>El hub de Self valida la prueba y te da el alta: no hay otra puerta de entrada.</li>
+          <li>El dividendo empieza a devengar desde ese momento.</li>
+          <li>Llamás a <code>claim()</code> cuando quieras, sin apuro: el costo es el mismo.</li>
+        </ol>
+        <div class="path-foot">
+          <a href="/verify"><b>Verificar y empezar a cobrar →</b></a>
+        </div>
+      </div>
+
+      <div class="path">
+        <div class="path-n">C</div>
+        <h4>Desde un agente, por MCP</h4>
+        <div class="who">Para agentes y herramientas de IA</div>
+        <ol class="path-steps">
+          <li>Apuntar el cliente a <code>/api/mcp</code> del proyecto.</li>
+          <li><code>subi_status</code> devuelve fondo, padrón y dividendo del día.</li>
+          <li><code>subi_claimable</code> y <code>subi_registration</code> consultan una dirección.</li>
+          <li><code>subi_build_deposit</code> y <code>subi_build_claim</code> arman la transacción <b>sin firmar</b>: el MCP no custodia nada.</li>
+        </ol>
+        <div class="path-foot">
+          <a href="https://github.com/artugrande/subi-concierge-agent/blob/main/docs/MCP.md">Cómo conectarlo ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" data-i18n="try.warn">
+      <p>
+        <strong>Dónde está parado el proyecto.</strong> El circuito completo funciona en Celo
+        mainnet: los contratos están cableados, el padrón sólo se escribe tras una prueba de Self
+        validada por su hub, y el treasury tiene fondos que el distributor puede repartir. Lo que
+        falta para el piloto no es técnico: es sumar aportantes al fondo y cerrar el protocolo de
+        evaluación con la universidad.
+      </p>
+    </div>
+
+    <div data-i18n="try.body">
+      <h3 style="margin-top:52px">Correrlo local</h3>
+      <pre><span class="c"># clonar y configurar</span>
+git clone https://github.com/artugrande/subi-concierge-agent
+cd subi-concierge-agent &amp;&amp; npm install
+cp .env.example .env   <span class="c"># cargar RPC y clave del agente</span>
+
+<span class="c"># correr los tests de los contratos</span>
+npx hardhat test
+
+<span class="c"># levantar la interfaz del agente</span>
+npm run dev</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EL PILOTO ============ -->
+<!-- ============ MCP ============ -->
+<section id="mcp">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="mcp.eyebrow">Desde un agente</span></div>
+    <h2 data-i18n="mcp.h">El MCP, con los comandos exactos</h2>
+    <p class="lead" data-i18n="mcp.lead">
+      SUBI expone su propio servidor MCP: seis herramientas sobre JSON-RPC 2.0. Las cuatro de
+      lectura no necesitan llaves. Las dos de escritura devuelven la transacción armada y
+      <b>sin firmar</b>, así que el servidor nunca custodia nada.
+    </p>
+
+    <div data-i18n="mcp.body" style="margin-top:34px">
+      <div class="note">
+        <p>
+          <strong>Todavía no está hosteado en una URL pública.</strong> Corre local con
+          <code>npm run dev</code> y queda en <code>http://localhost:3000/api/mcp</code>. Lo digo
+          acá para que nadie pierda tiempo buscando un endpoint que no existe.
+        </p>
+      </div>
+
+      <h3 style="margin-top:44px">Levantarlo</h3>
+      <div class="cmd"><pre><span class="c"># clonar, instalar y levantar</span>
+git clone https://github.com/artugrande/subi-concierge-agent
+cd subi-concierge-agent &amp;&amp; npm install
+npm run dev                      <span class="c"># MCP en /api/mcp, puerto 3000</span></pre></div>
+
+      <h3 style="margin-top:40px">Ver qué herramientas expone</h3>
+      <div class="cmd"><pre>curl -s -X POST http://localhost:3000/api/mcp \
+  -H 'content-type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,<span class="k">"method":"tools/list"</span>}'</pre></div>
+
+      <h3 style="margin-top:40px">Preguntar por el estado del fondo</h3>
+      <div class="cmd"><pre>curl -s -X POST http://localhost:3000/api/mcp \
+  -H 'content-type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call",
+       "params":{<span class="k">"name":"subi_status"</span>,"arguments":{}}}'</pre></div>
+
+      <h3 style="margin-top:40px">Armar un cobro sin firmarlo</h3>
+      <div class="cmd"><pre>curl -s -X POST http://localhost:3000/api/mcp \
+  -H 'content-type: application/json' \
+  -d '{"jsonrpc":"2.0","id":1,"method":"tools/call",
+       "params":{<span class="k">"name":"subi_build_claim"</span>,
+                 "arguments":{"address":"0x…"}}}'</pre></div>
+      <p style="margin-top:-4px">Devuelve <code>to</code>, <code>data</code>, <code>value</code> y <code>feeCurrency</code>. Firmarlo es tu problema, y esa es la idea.</p>
+
+      <h3 style="margin-top:40px">Conectarlo a un cliente MCP</h3>
+      <div class="cmd"><pre>{
+  "mcpServers": {
+    "subi": { "url": "http://localhost:3000/api/mcp" }
+  }
+}</pre></div>
+
+      <h3 style="margin-top:44px">Las seis herramientas</h3>
+      <div class="toolrow"><code>subi_status</code><span>Saldo del treasury, tamaño del padrón, distribuible y dividendo diario por persona.</span></div>
+      <div class="toolrow"><code>subi_claimable</code><span>Cuánto tiene acumulado una dirección para cobrar ahora mismo.</span></div>
+      <div class="toolrow"><code>subi_registration</code><span>Si una dirección está en el padrón y cuándo vence su prueba de vida. No expone el nullifier.</span></div>
+      <div class="toolrow"><code>subi_contracts</code><span>Las direcciones en Celo mainnet y los datos de la red.</span></div>
+      <div class="toolrow"><code>subi_build_deposit</code><span>Arma el <code>approve</code> y el <code>deposit</code>, sin firmar.</span></div>
+      <div class="toolrow"><code>subi_build_claim</code><span>Arma el <code>claim</code>, sin firmar.</span></div>
+
+      <div class="cta-row" style="margin-top:34px">
+        <a href="https://github.com/artugrande/subi-concierge-agent/blob/main/docs/MCP.md" class="btn">Documentación del MCP ↗</a>
+        <a href="/dashboard" class="btn primary">Y si preferís una UI, el panel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="piloto">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="pil.eyebrow">El piloto</span></div>
+    <h2 data-i18n="pil.h">Qué se lanza en Argentina Space</h2>
+    <p class="lead" data-i18n="pil.lead">
+      Mil personas verificadas, doce meses, con auditor académico independiente. Estos son los hitos
+      y las métricas contra las que se va a medir.
+    </p>
+
+    <div class="tl" style="margin-top:34px" data-i18n="pil.tl">
+      <div class="tl-row"><div class="yr">Oct 2026</div><div class="txt"><b>Cierre técnico.</b> Verificador de Self conectado, contratos auditados y treasury enlazado al distributor.</div></div>
+      <div class="tl-row now"><div class="yr">11-13 nov</div><div class="txt"><b>Argentina Space, Salta.</b> Demostración en vivo, apertura del Space Dividend Pledge a firma y primeras altas del padrón.</div></div>
+      <div class="tl-row"><div class="yr">Dic 2026</div><div class="txt"><b>Cohorte cerrada.</b> Mil personas verificadas y grupo de control definido con la universidad.</div></div>
+      <div class="tl-row"><div class="yr">2027</div><div class="txt"><b>Doce meses de reparto</b> e informe público con el auditor. Presentación ante el Grupo de Trabajo de UNCOPUOS antes de su informe final.</div></div>
+    </div>
+
+    <h3 style="margin-top:52px" data-i18n="pil.mh">Las métricas que queremos probar</h3>
+    <div class="tw" data-i18n="pil.metrics">
+      <table>
+        <thead><tr><th style="min-width:190px">Métrica</th><th>Cómo se mide</th><th style="min-width:110px">Objetivo</th></tr></thead>
+        <tbody>
+          <tr><td><b>Personas en el padrón</b></td><td><code>activeCount</code> on-chain</td><td class="hi">1.000</td></tr>
+          <tr><td><b>Tiempo de alta</b></td><td>Del escaneo del documento a la confirmación</td><td class="hi">&lt; 3 min</td></tr>
+          <tr><td><b>Costo de verificar</b></td><td>Gas total de altas dividido por altas</td><td class="hi">&lt; USD 0,01</td></tr>
+          <tr class="hlrow"><td><b>Overhead de infraestructura</b></td><td>Gas total sobre monto repartido</td><td class="hi">&lt; 0,5%</td></tr>
+          <tr><td><b>Cobros sin CELO en la wallet</b></td><td>Claims con <code>feeCurrency</code> en stablecoin</td><td class="hi">100%</td></tr>
+          <tr><td><b>Retención a 90 días</b></td><td>Direcciones que cobraron al menos una vez en el trimestre</td><td class="hi">&gt; 70%</td></tr>
+          <tr><td><b>Organizaciones con Pledge</b></td><td>Compromisos firmados en <code>PledgeRegistry</code></td><td class="hi">≥ 3</td></tr>
+          <tr><td><b>Retiro a moneda local</b></td><td>Proporción que convirtió a wARS</td><td>Medición, sin objetivo</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note mint" data-i18n="pil.note">
+      <p>
+        La hipótesis a falsar es concreta: <strong>que repartir dinero a mil personas todos los días
+        cuesta menos del 0,5% de lo repartido</strong>, y que una persona sin banco, sin CELO y sin
+        conocimiento previo puede darse de alta y cobrar en menos de tres minutos. Si eso no se
+        cumple, el mecanismo no sirve y conviene saberlo antes de proponerlo en UNCOPUOS.
+      </p>
+    </div>
+
+    <div class="cta-row" style="margin-top:32px" data-i18n="pil.cta">
+      <a href="/propuesta" class="btn primary">La propuesta completa</a>
+      <a href="/" class="btn">Volver al proyecto</a>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:60px 0 54px;background:var(--ink2)">
+  <div class="wrap">
+    <p style="font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-3);max-width:none" data-i18n="foot.legal">
+      SUBI · Space Universal Basic Income. Sin token, sin preventa y sin fines de lucro.
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script src="demo.js?v=35"></script>
+</body>
+</html>

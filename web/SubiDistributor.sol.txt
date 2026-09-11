@@ -1,0 +1,219 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.24;
+
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+
+/// @notice Padrón mínimo que el distribuidor necesita consultar.
+///         Lo implementa SubiRegistry, que hereda de SelfVerificationRoot.
+interface ISubiRegistry {
+    function isActive(address account) external view returns (bool);
+    function activeCount() external view returns (uint256);
+}
+
+/**
+ * @title  SubiDistributor
+ * @notice Reparte una renta básica diaria entre humanos verificados con Self.
+ *
+ * DISEÑO
+ * ------
+ * El monto no se fija: se deriva. Cada período se devenga
+ *
+ *     presupuesto = distribuible * tasaDeGiro * (dt / 365d)
+ *     perCápita   = presupuesto / humanosActivos
+ *
+ * donde `distribuible` es el balance del treasury MENOS lo ya devengado y
+ * no cobrado. De ahí caen tres propiedades:
+ *
+ *   1. Insolvencia imposible. Se reparte un % de lo que hay, nunca un monto
+ *      prometido.
+ *   2. Cero discrecionalidad. Nadie vota cuánto cobra cada uno.
+ *   3. Costo O(1) por usuario, sin importar cuántos días pasó sin cobrar ni
+ *      cuánta gente haya en el padrón. Se logra con un índice acumulado
+ *      global (mismo patrón que los contratos de staking rewards).
+ *
+ * NOTA SOBRE EL PADRÓN VENCIDO
+ * ----------------------------
+ * Si `activeCount` sobreestima (gente que dejó de renovar su prueba de vida
+ * y todavía no fue barrida por `reap()`), el sistema PAGA DE MENOS, nunca de
+ * más. El error es conservador por construcción, así que la limpieza perezosa
+ * del padrón es segura desde el punto de vista de la solvencia.
+ *
+ * ESTADO: esqueleto de referencia para auditoría y discusión.
+ *         No desplegar sin auditoría externa.
+ */
+contract SubiDistributor {
+    using SafeERC20 for IERC20;
+
+    // --- Constantes -------------------------------------------------------
+
+    uint256 private constant PRECISION = 1e18;
+    uint256 private constant YEAR = 365 days;
+    uint256 private constant BPS = 10_000;
+
+    /// @dev Techo duro sobre la tasa de giro. Aunque se comprometa la
+    ///      gobernanza, no se puede vaciar el fondo de golpe.
+    uint256 public constant MAX_DRAW_RATE_BPS = 1_000; // 10% anual
+
+    // --- Inmutables -------------------------------------------------------
+
+    IERC20 public immutable asset;      // USDC, USDT o USDm
+    ISubiRegistry public immutable registry;
+
+    // --- Estado -----------------------------------------------------------
+
+    /// @notice Tasa de giro anual en basis points. 400 = 4%.
+    ///         Criterio análogo al POMV del Alaska Permanent Fund.
+    uint256 public drawRateBps;
+
+    /// @notice Pago acumulado, desde el génesis, de un humano hipotético que
+    ///         hubiera estado activo todo el tiempo. Escalado por PRECISION.
+    uint256 public accIndex;
+
+    /// @notice Último devengo.
+    uint256 public lastAccrual;
+
+    /// @notice Total devengado y todavía no cobrado. Se resta del balance
+    ///         para calcular lo distribuible y evitar contar dos veces.
+    uint256 public accruedUnclaimed;
+
+    /// @notice Marca de cada usuario contra `accIndex`.
+    mapping(address => uint256) public checkpoint;
+
+    // --- Eventos ----------------------------------------------------------
+
+    event Accrued(uint256 budget, uint256 perCapita, uint256 activeCount);
+    event Claimed(address indexed human, uint256 amount);
+    event DrawRateSet(uint256 oldBps, uint256 newBps);
+
+    // --- Errores ----------------------------------------------------------
+
+    error NotVerified();
+    error NothingToClaim();
+    error DrawRateTooHigh();
+
+    // ----------------------------------------------------------------------
+
+    constructor(IERC20 asset_, ISubiRegistry registry_, uint256 drawRateBps_) {
+        if (drawRateBps_ > MAX_DRAW_RATE_BPS) revert DrawRateTooHigh();
+        asset = asset_;
+        registry = registry_;
+        drawRateBps = drawRateBps_;
+        lastAccrual = block.timestamp;
+    }
+
+    // --- Núcleo -----------------------------------------------------------
+
+    /// @notice Fondos que el contrato puede repartir, ya netos de lo
+    ///         devengado y pendiente de cobro.
+    function distributable() public view returns (uint256) {
+        uint256 bal = asset.balanceOf(address(this));
+        return bal > accruedUnclaimed ? bal - accruedUnclaimed : 0;
+    }
+
+    /// @notice Devenga el goteo transcurrido desde el último llamado.
+    ///         Sin permisos y idempotente: la llama cualquiera, y la llaman
+    ///         internamente `claim`, alta y baja de padrón.
+    function accrue() public {
+        uint256 dt = block.timestamp - lastAccrual;
+        if (dt == 0) return;
+
+        uint256 active = registry.activeCount();
+        uint256 pool = distributable();
+
+        // Sin padrón o sin fondos no se devenga nada, pero igual se corre el
+        // reloj: si no, al entrar el primer humano cobraría de una todo el
+        // devengo histórico acumulado.
+        if (active == 0 || pool == 0) {
+            lastAccrual = block.timestamp;
+            return;
+        }
+
+        uint256 budget = (pool * drawRateBps * dt) / (BPS * YEAR);
+        if (budget == 0) {
+            lastAccrual = block.timestamp;
+            return;
+        }
+
+        uint256 perCapita = (budget * PRECISION) / active;
+
+        // Se re-deriva el presupuesto desde el per cápita redondeado hacia
+        // abajo. Así lo devengado nunca supera lo que se puede pagar.
+        uint256 exact = (perCapita * active) / PRECISION;
+
+        accIndex += perCapita;
+        accruedUnclaimed += exact;
+        lastAccrual = block.timestamp;
+
+        emit Accrued(exact, perCapita, active);
+    }
+
+    /// @notice Cuánto tiene para cobrar un humano ahora mismo, incluyendo el
+    ///         devengo pendiente. Solo lectura, para la interfaz.
+    function claimable(address human) external view returns (uint256) {
+        if (!registry.isActive(human)) return 0;
+
+        uint256 idx = accIndex;
+        uint256 dt = block.timestamp - lastAccrual;
+        uint256 active = registry.activeCount();
+        uint256 pool = distributable();
+
+        if (dt > 0 && active > 0 && pool > 0) {
+            uint256 budget = (pool * drawRateBps * dt) / (BPS * YEAR);
+            idx += (budget * PRECISION) / active;
+        }
+        return (idx - checkpoint[human]) / PRECISION;
+    }
+
+    /// @notice Cobra el dividendo acumulado. Costo de gas constante, sin
+    ///         importar cuántos días hayan pasado desde el último cobro.
+    function claim() external returns (uint256 amount) {
+        if (!registry.isActive(msg.sender)) revert NotVerified();
+
+        accrue();
+
+        uint256 delta = accIndex - checkpoint[msg.sender];
+        amount = delta / PRECISION;
+        if (amount == 0) revert NothingToClaim();
+
+        // Se guarda el índice completo, no el truncado: el resto por debajo
+        // de PRECISION queda a favor del usuario para el próximo cobro.
+        checkpoint[msg.sender] = accIndex;
+        accruedUnclaimed -= amount;
+
+        asset.safeTransfer(msg.sender, amount);
+        emit Claimed(msg.sender, amount);
+    }
+
+    // --- Ganchos del padrón ----------------------------------------------
+    // Solo los llama SubiRegistry, al alta y a la baja. Devengar ANTES de
+    // que cambie `activeCount` es lo que mantiene correcta la contabilidad.
+
+    /// @notice Alta. El nuevo humano arranca con el índice actual, así que
+    ///         no cobra nada de lo devengado antes de existir.
+    function onRegister(address human) external {
+        require(msg.sender == address(registry), "only registry");
+        accrue();
+        checkpoint[human] = accIndex;
+    }
+
+    /// @notice Baja por vencimiento o renuncia. Lo ya devengado y no cobrado
+    ///         queda reclamable si la persona vuelve a verificarse: su
+    ///         checkpoint no se toca.
+    function onDeregister(address) external {
+        require(msg.sender == address(registry), "only registry");
+        accrue();
+    }
+
+    // --- Gobernanza -------------------------------------------------------
+    // En producción esto va detrás de un multisig con timelock. El techo
+    // MAX_DRAW_RATE_BPS es inmutable y no lo puede levantar nadie.
+
+    function setDrawRate(uint256 newBps) external {
+        // TODO: control de acceso (multisig + timelock)
+        if (newBps > MAX_DRAW_RATE_BPS) revert DrawRateTooHigh();
+        accrue();
+        emit DrawRateSet(drawRateBps, newBps);
+        drawRateBps = newBps;
+    }
+}

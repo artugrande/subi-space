@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SUBI · Space Universal Basic Income</title>
+<meta name="description" content="Renta básica universal fondeada por los recursos del espacio. Identidad con Self, liquidación en stablecoins locales sobre Celo.">
+<meta property="og:title" content="SUBI · Space Universal Basic Income">
+<meta property="og:description" content="Los tratados reconocen que los recursos del espacio pertenecen a toda la humanidad. Falta la infraestructura que lo haga efectivo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://subi.space/">
+<link rel="canonical" href="https://subi.space/">
+<meta property="og:image" content="https://subi.space/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=36">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="logo/mark-sm.png">
+</head>
+<body>
+
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none" id="stars">
+  <div style="position:absolute;inset:0;opacity:.5;background-image:radial-gradient(1px 1px at 20px 30px,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 140px 90px,rgba(255,255,255,.35) 50%,transparent 51%),radial-gradient(1px 1px at 260px 40px,rgba(255,255,255,.28) 50%,transparent 51%),radial-gradient(1px 1px at 70px 190px,rgba(255,255,255,.4) 50%,transparent 51%),radial-gradient(1px 1px at 210px 230px,rgba(255,255,255,.22) 50%,transparent 51%);background-size:320px 280px"></div>
+  <div style="position:absolute;top:-30vh;left:50%;width:150vw;height:110vh;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(240,163,75,.10),transparent 70%)"></div>
+</div>
+
+<div style="position:relative;z-index:1">
+
+<nav style="position:sticky;top:0;z-index:40;background:rgba(7,11,20,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding-top:14px;padding-bottom:14px">
+    <a href="#top" aria-label="SUBI" style="display:flex;align-items:center;gap:12px;border-bottom:none">
+      <img src="logo/mark-sm.png" alt="" width="96" height="103" style="width:26px;height:auto">
+      <img src="logo/wordmark-only.png" alt="" width="240" height="62" style="width:74px;height:auto">
+    </a>
+    <div style="display:flex;align-items:center;gap:26px">
+      <div class="navlinks" data-i18n="nav">
+        <a href="#problema">Problema</a>
+        <a href="#mecanismo">Mecanismo</a>
+        <a href="#numeros">Números</a>
+        <a href="#diferencia">Diferencia</a>
+        <a href="#estado">Estado</a>
+        <a href="#pedido">Propuesta</a>
+        <a href="/demo" class="demo-link">Demo</a>
+      </div>
+      <div class="lang">
+        <button data-lang="es" class="on">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+  <div style="height:1px;background:var(--line);margin-top:-1px"><i id="prog" style="display:block;height:1px;width:0;background:var(--gold)"></i></div>
+</nav>
+
+<header class="wrap" id="top" style="padding-top:clamp(60px,9vh,110px);padding-bottom:clamp(70px,10vh,120px)">
+  <h1 class="sr-only">SUBI · Space Universal Basic Income</h1>
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow" style="margin-bottom:30px"><span>Space Universal Basic Income</span></div>
+      <p class="thesis" data-i18n="hero.thesis" style="font-family:var(--serif);font-weight:300;font-size:clamp(28px,3.9vw,50px);line-height:1.12;letter-spacing:-.02em;color:var(--txt);max-width:22ch;margin:0 0 36px">
+        El derecho internacional reconoce que los recursos del espacio pertenecen a
+        <b>toda la humanidad</b>. Falta la infraestructura que lo haga efectivo.
+      </p>
+      <div class="cta-row" data-i18n="hero.cta" style="margin-bottom:34px">
+        <a href="/demo" class="btn primary">Ver la demo</a>
+        <a href="#mecanismo" class="btn">Cómo funciona</a>
+        <a href="/propuesta" class="btn">Documento completo</a>
+      </div>
+      <div class="hero-meta" data-i18n="hero.chips" style="display:flex;flex-wrap:wrap;gap:8px">
+        <span class="chip">Identidad · <b>Self</b> (ZK)</span>
+        <span class="chip">Liquidación · <b>Celo</b></span>
+        <span class="chip">Cobro · <b>13 monedas locales</b></span>
+        <span class="chip">Token propio · <b>ninguno</b></span>
+        <span class="chip">Contratos · <b>en mainnet</b></span>
+        <span class="chip">Identidad · <b>verificada con Self</b></span>
+      </div>
+    </div>
+    <div class="orbits" id="heroPh" aria-hidden="true">
+      <div class="orb-glow"></div>
+      <div class="orb-pulse p1"></div>
+      <div class="orb-pulse p2"></div>
+      <div class="orb-pulse p3"></div>
+      <div class="orb-ring r3"><i></i></div>
+      <div class="orb-ring r2"><i></i></div>
+      <div class="orb-ring r1"><i></i></div>
+      <div class="orb-core"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 01 PROBLEMA ============ -->
+<section id="problema">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p1.eyebrow">01 · El problema</span></div>
+    <h2 data-i18n="p1.h">Una obligación sin infraestructura</h2>
+    <p class="lead" data-i18n="p1.lead">
+      El Artículo I del Tratado del Espacio Ultraterrestre de 1967 declara el espacio "incumbencia de
+      toda la humanidad". Es una obligación de reparto sin recaudador, sin padrón y sin canal de pago.
+      <a class="ref" href="https://www.nasa.gov/history/SP-4225/documentation/cooperation/treaty.htm">texto</a>
+    </p>
+
+    <div class="tl" data-i18n="p1.tl">
+      <div class="tl-row"><div class="yr">1967</div><div class="txt">El Tratado declara el espacio incumbencia de toda la humanidad. Sin mecanismo de cumplimiento.</div></div>
+      <div class="tl-row"><div class="yr">2015 · 2020</div><div class="txt">EE.UU., Luxemburgo y Emiratos legislan la propiedad de lo extraído. Artemis, Sección 10: extraer no es apropiación nacional. <b>El derecho a extraer queda resuelto; el deber de repartir, no.</b></div></div>
+      <div class="tl-row"><div class="yr">2023</div><div class="txt">Argentina firma los Acuerdos Artemis. <a class="ref" href="https://www.nasa.gov/news-release/nasa-welcomes-argentina-as-newest-artemis-accords-signatory">NASA</a></div></div>
+      <div class="tl-row now"><div class="yr">2027</div><div class="txt">El Grupo de Trabajo de UNCOPUOS cierra con principios recomendados. <b>La ventana para meter un mecanismo se cierra sola.</b> <a class="ref" href="https://www.unoosa.org/oosa/en/ourwork/copuos/lsc/space-resources/index.html">UNOOSA</a></div></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:34px" data-i18n="p1.cards">
+      <div class="card">
+        <div class="num">40%</div>
+        <p>del empleo mundial expuesto a la IA. Sin política pública, <strong>amplía la desigualdad</strong>.</p>
+        <div class="srcline"><a href="https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf">FMI · SDN/2024/001</a></div>
+      </div>
+      <div class="card">
+        <div class="num">22%</div>
+        <p>de rotación estructural sobre 1.200 millones de empleos hacia 2030. Lo relevante no es el saldo neto: es la transición.</p>
+        <div class="srcline"><a href="https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf">WEF · Future of Jobs 2025</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 MECANISMO ============ -->
+<section id="mecanismo">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p2.eyebrow">02 · Mecanismo</span></div>
+    <h2 data-i18n="p2.h">Cuatro capas, todas operativas hoy</h2>
+
+    <div data-i18n="p2.body">
+      <ul class="plain" style="margin-top:26px">
+        <li><b>Identidad.</b> Prueba ZK del chip del pasaporte, generada en el teléfono. Produce un <code>nullifier</code> único que no revela nada del documento. 174+ países. <a class="ref" href="https://docs.self.xyz/">Self</a></li>
+        <li><b>Padrón.</b> Un humano, un asiento. Prueba de vida cada 12 meses. No transferible.</li>
+        <li><b>Treasury.</b> Aportes sin permiso. Las organizaciones declaran on-chain qué porcentaje de sus ingresos espaciales comprometen. Sin fuerza legal, por diseño: busca legibilidad, no coerción.</li>
+        <li><b>Distribución.</b> El monto no se fija, se deriva.</li>
+      </ul>
+
+      <div class="formula">
+        perCápita = (<span class="hl">distribuible</span> × <span class="hl">tasaDeGiro</span> × Δt/365) / <span class="hl">humanosActivos</span>
+      </div>
+
+      <ul class="plain">
+        <li><b>Insolvencia imposible.</b> Reparte una fracción de lo que hay, nunca un monto comprometido.</li>
+        <li><b>Sin discrecionalidad.</b> El monto sale de una división, no de una votación.</li>
+        <li><b>Perpetuidad viable.</b> Con la tasa de giro debajo del retorno real, el fondo es permanente. Criterio del Alaska Permanent Fund, que paga dividendo desde 1982.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 NÚMEROS ============ -->
+<section id="numeros">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p3.eyebrow">03 · Números</span></div>
+    <h2 data-i18n="p3.h">Los números, sin adornar</h2>
+    <p class="lead" data-i18n="p3.lead">
+      La economía espacial proyecta <strong>USD 1,8 billones anuales para 2035</strong>. Movés los
+      parámetros y ves qué sale realmente.
+      <a class="ref" href="https://www.mckinsey.com/featured-insights/themes/the-space-economy-is-projected-to-reach-1-8-trillion-by-2035">WEF y McKinsey</a>
+    </p>
+
+    <div class="calc">
+      <div class="calc-head">
+        <h4 data-i18n="calc.m.title">Sensibilidad del dividendo</h4>
+        <span class="tag">aporte × padrón</span>
+      </div>
+      <div class="calc-body">
+        <div class="calc-controls">
+          <div class="ctrl">
+            <label data-i18n="calc.m.econ">Economía espacial en 2035</label>
+            <div class="seg" id="m-econ">
+              <button data-v="1800" class="on" data-i18n="calc.m.wef">WEF / McKinsey · 1,8 B</button>
+              <button data-v="900" data-i18n="calc.m.cons">Conservadora · 900 mil M</button>
+            </div>
+          </div>
+          <div class="ctrl">
+            <label><span data-i18n="calc.m.lev">Aporte al treasury</span> <span class="v" id="m-lev-v"></span></label>
+            <input type="range" id="m-lev" min="1" max="100" value="10">
+          </div>
+          <div class="ctrl">
+            <label><span data-i18n="calc.m.pad">Padrón</span> <span class="v" id="m-pad-v"></span></label>
+            <input type="range" id="m-pad" min="0" max="100" value="35">
+          </div>
+        </div>
+        <div class="calc-out">
+          <div class="bignum" id="m-out"></div>
+          <div class="subnum" id="m-out2"></div>
+          <div class="bar"><i id="m-bar" style="width:0%"></i></div>
+          <div class="barlab"><span>0</span><span data-i18n="calc.m.pov">pobreza extrema · USD 2,15/día</span></div>
+          <div class="verdict" id="m-verdict"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note" data-i18n="p3.concl">
+      <p>
+        <strong>Universalidad y suficiencia todavía no coexisten.</strong> Un 5% repartido entre los
+        6.600 millones de adultos del planeta da USD 13,64 al año. Repartido entre 100 millones, supera
+        la línea de pobreza extrema. Por eso se arranca focalizado con el padrón abierto, como hizo
+        Alaska. El valor de 2026 no es el monto: es el precedente.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 DIFERENCIA ============ -->
+<section id="diferencia">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p4.eyebrow">04 · Diferencia</span></div>
+    <h2 data-i18n="p4.h">En qué se diferencia de las otras rentas básicas</h2>
+
+    <div class="tw" data-i18n="p4.table" style="margin-top:30px">
+      <table>
+        <thead><tr><th style="min-width:150px">Dimensión</th><th>Worldcoin</th><th>GoodDollar</th><th style="color:var(--mint)">SUBI</th></tr></thead>
+        <tbody>
+          <tr><td><b>Prueba de humanidad</b></td><td>Iris, hardware propietario</td><td>Video con detección de vida</td><td class="yes">Documento estatal, prueba ZK en el teléfono</td></tr>
+          <tr><td><b>Datos que entrega</b></td><td class="no">Biometría a una empresa privada</td><td class="mid">Video facial público</td><td class="yes">Ninguno</td></tr>
+          <tr><td><b>Token propio</b></td><td class="no">WLD</td><td class="no">G$</td><td class="yes">Ninguno, solo stablecoins</td></tr>
+          <tr><td><b>Origen del fondeo</b></td><td class="mid">Emisión propia e inversores</td><td class="mid">Capital donado y emisión</td><td class="yes">Renta espacial, Art. I del Tratado de 1967</td></tr>
+          <tr><td><b>Moneda de cobro</b></td><td class="mid">Token volátil</td><td class="mid">Token volátil</td><td class="yes">13 monedas locales, a elección</td></tr>
+          <tr><td><b>Respaldo estatal viable</b></td><td class="no">Objeciones de protección de datos</td><td class="mid">Sin ángulo institucional</td><td class="yes">Sin token, sin biometría, sin captación de datos</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p data-i18n="p4.foot" style="margin-top:22px">
+      Corresponde reconocer los antecedentes: <a href="https://www.gooddollar.org">GoodDollar</a>
+      reparte renta básica sobre Celo desde 2020 y <a href="https://proofofhumanity.id">Proof of Humanity</a>,
+      con origen en Democracy Earth, trató primero la prueba de humanidad como bien público. La
+      diferencia de SUBI no es técnica: es el origen del fondeo y el encuadre jurídico.
+    </p>
+  </div>
+</section>
+
+<!-- ============ 05 ESTADO ============ -->
+<section id="estado">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p5.eyebrow">05 · Estado</span></div>
+    <h2 data-i18n="p5.h">Ya no es una propuesta en papel</h2>
+
+    <div data-i18n="p5.body">
+      <p class="lead">
+        Los contratos están desplegados en <strong>Celo mainnet</strong> y hay un agente conversacional
+        que guía el flujo completo: verificar, aportar y cobrar.
+      </p>
+      <ul class="plain" style="margin-top:24px">
+        <li>Cuatro contratos en mainnet: registry, treasury, distributor y pledge registry.</li>
+        <li><b>Verificación real con Self.</b> El alta en el padrón sólo ocurre tras una prueba de conocimiento cero validada por el hub de Self. No hay ninguna otra puerta de entrada.</li>
+        <li><b>MCP propio</b> para que un agente consulte el fondo y arme transacciones sin firmar.</li>
+        <li><b>Celo Agents at Work</b> · distinción <b>Judges' Favorite</b>. Identidad on-chain ERC-8004, agent ID 9822.</li>
+      </ul>
+      <div class="cta-row" style="margin-top:28px">
+        <a href="/demo" class="btn primary">Ver la demo paso a paso</a>
+        <a href="https://github.com/artugrande/subi-concierge-agent" class="btn">Repo del agente</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 PROPUESTA ============ -->
+<section id="pedido">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p6.eyebrow">06 · Propuesta</span></div>
+    <h2 data-i18n="p6.h">Tres solicitudes concretas</h2>
+
+    <div class="grid g3" style="margin-top:30px" data-i18n="p6.asks">
+      <div class="ask">
+        <div class="n">1</div>
+        <h4>Llevar el mecanismo a UNCOPUOS</h4>
+        <p>Argentina, firmante de Artemis y con representación en COPUOS, puede proponer que los principios recomendados incluyan reparto con destinatarios individuales, no solo transferencia de tecnología entre Estados.</p>
+      </div>
+      <div class="ask">
+        <div class="n">2</div>
+        <h4>Ser la jurisdicción piloto</h4>
+        <p>CONAE como contraparte, una universidad nacional como auditor y mil participantes. La primera jurisdicción del mundo en liquidar un dividendo de recursos espaciales.</p>
+      </div>
+      <div class="ask">
+        <div class="n">3</div>
+        <h4>Abrir el Pledge a firma en Salta</h4>
+        <p>Con las empresas y agencias presentes en Argentina Space 2026. Aunque el primer compromiso sea simbólico, el registro queda abierto y fechado desde ese día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 AUTOR ============ -->
+<section id="autoria">
+  <div class="wrap">
+    <div class="eyebrow"><span data-i18n="p7.eyebrow">07 · Autor</span></div>
+    <h2 data-i18n="p7.h">Una idea original de Arturo Grande</h2>
+    <div data-i18n="p7.body">
+      <div class="author">
+        <img class="photo" src="bio.jpg" alt="Arturo Grande" width="440" height="440" loading="lazy">
+        <div>
+          <h4>Arturo Grande</h4>
+          <div class="role">Salta, 1995 · Product Builder especializado en IA, fintech y Web3</div>
+          <ul class="plain">
+            <li>Lideró producto y marketing en <a href="https://www.eluter.com/">Eluter</a>, fintech de pagos que pasó de USD 5 a 65 millones de volumen mensual. Fundador de <a href="https://desafia.tech/">DESAFIA</a>.</li>
+            <li>Profesor de Negocios Digitales (<a href="https://www.ucema.edu.ar/">UCEMA</a>) y Criptoeconomía (<a href="https://www.uncuyo.edu.ar/">UNCUYO</a>).</li>
+            <li>Ganador de 12 hackathones internacionales: Celo, ETHGlobal, Avalanche, Worldcoin, Stellar, Filecoin, BNB Chain y otras.</li>
+            <li>Ambassador de <a href="https://cursor.com/">SpaceXAI</a>, <a href="https://v0.app/">v0</a> y <a href="https://celo.org/">Celo</a>. Creador de <a href="https://www.youtube.com/@artugrande/streams">Builders OFF the Record</a>.</li>
+          </ul>
+          <div class="srcline"><a href="https://arturogrande.com/">arturogrande.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:70px 0 60px;background:var(--ink2)">
+  <div class="wrap">
+    <details class="srcbox">
+      <summary data-i18n="foot.h">Fuentes</summary>
+      <div class="srcs" data-i18n="foot.srcs">
+        <h4>Derecho espacial</h4>
+        <ul>
+          <li><a href="https://www.nasa.gov/history/SP-4225/documentation/cooperation/treaty.htm">Tratado del Espacio Ultraterrestre 1967 (NASA)</a></li>
+          <li><a href="https://www.unoosa.org/oosa/en/ourwork/spacelaw/treaties/intromoon-agreement.html">Acuerdo de la Luna 1979 (UNOOSA)</a></li>
+          <li><a href="https://www.nasa.gov/wp-content/uploads/2022/11/Artemis-Accords-signed-13Oct2020.pdf">Acuerdos Artemis, texto firmado (NASA)</a></li>
+          <li><a href="https://e-revistas.uc3m.es/index.php/CDT/en/article/view/8947">Sección 10 de los Acuerdos Artemis</a></li>
+          <li><a href="https://www.nasa.gov/news-release/nasa-welcomes-argentina-as-newest-artemis-accords-signatory">Argentina firma los Acuerdos Artemis (NASA)</a></li>
+          <li><a href="https://www.unoosa.org/oosa/en/ourwork/copuos/lsc/space-resources/index.html">Grupo de Trabajo sobre Recursos Espaciales (UNOOSA)</a></li>
+          <li><a href="https://www.ejiltalk.org/uncopuos-and-the-quiet-transformation-of-space-resources-law/">UNCOPUOS y el derecho de recursos espaciales (EJIL: Talk!)</a></li>
+        </ul>
+        <h4>IA y futuro del trabajo</h4>
+        <ul>
+          <li><a href="https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf">FMI, SDN/2024/001, Gen-AI and the Future of Work</a></li>
+          <li><a href="https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf">WEF, Future of Jobs Report 2025</a></li>
+        </ul>
+        <h4>Evidencia de renta básica</h4>
+        <ul>
+          <li><a href="https://www.givedirectly.org/basic-income/">GiveDirectly, estudio de doce años en Kenia</a></li>
+          <li><a href="https://poverty-action.org/effects-universal-basic-income-kenya">IPA, The Effects of a Universal Basic Income in Kenya</a></li>
+          <li><a href="https://pfd.alaska.gov/">Alaska Permanent Fund Dividend</a></li>
+          <li><a href="https://www.worldbank.org/en/topic/poverty">Banco Mundial, línea de pobreza extrema</a></li>
+        </ul>
+        <h4>Economía espacial</h4>
+        <ul>
+          <li><a href="https://www.mckinsey.com/featured-insights/themes/the-space-economy-is-projected-to-reach-1-8-trillion-by-2035">McKinsey y WEF, USD 1,8 billones en 2035</a></li>
+        </ul>
+        <h4>Stack</h4>
+        <ul>
+          <li><a href="https://docs.self.xyz/">Self Protocol</a></li>
+          <li><a href="https://docs.celo.org/build-on-celo/build-with-self">Celo Docs, construir con Self</a></li>
+          <li><a href="https://app.mento.org">Mento, stablecoins de moneda local</a></li>
+          <li><a href="https://www.ripio.com/en/cryptos/local-stablecoins">Ripio, stablecoins wFIAT</a></li>
+          <li><a href="https://github.com/artugrande/subi-concierge-agent">SUBI Concierge Agent (repo)</a></li>
+        </ul>
+        <h4>Antecedentes y evento</h4>
+        <ul>
+          <li><a href="https://www.gooddollar.org">GoodDollar</a></li>
+          <li><a href="https://proofofhumanity.id">Proof of Humanity</a></li>
+          <li><a href="https://argentinaspace.com/">Argentina Space 2026, Salta</a></li>
+        </ul>
+      </div>
+    </details>
+    <p style="margin-top:34px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--txt-3);max-width:none" data-i18n="foot.legal">
+      SUBI · Space Universal Basic Income. Documento de trabajo y propuesta pública.
+      Sin token, sin preventa y sin fines de lucro.
+    </p>
+  </div>
+</footer>
+
+</div>
+
+<script src="i18n.js?v=36"></script>
+<script src="app.js?v=36"></script>
+</body>
+</html>
