@@ -51,7 +51,7 @@
     <div class="meta">
       <span>Arturo Grande</span>
       <span>Salta, Argentina</span>
-      <span>5,551 words · ~28 min read</span>
+      <span>5,552 words · ~28 min read</span>
       <span>Salta, 11 to 13 November 2026</span>
     </div>
   </div>
@@ -180,7 +180,7 @@ per_capita    = period_budget / active_humans</code></pre>
 <p><strong>Expired register entries</strong>: when someone stops renewing their proof of life, the active counter has to come down. Instead of a cron job, this is done lazily through a permissionless <code>reap()</code> function. And there is a nice property here: while the counter is overestimated, the system <strong>underpays, never overpays</strong>. The error is conservative by construction, so lazy cleanup is safe.</p>
 <h3 id="3-5-layer-5-governance-and-transparency"><a class="anchor" href="#3-5-layer-5-governance-and-transparency">#</a>3.5 Layer 5: Governance and transparency</h3>
 <p>Everything that matters is public by default and requires trusting nobody:</p>
-<ul><li>Treasury balance, live.</li><li>Active register, live (aggregate count and by country, never identities).</li><li>Today's per-capita and the historical series.</li><li>Every contribution, attributed to the contributor.</li><li>Every Pledge, with its quarterly compliance marked.</li><li>The source code of every contract, public on GitHub under the MIT licence and verified on Blockscout and Sourcify: anyone can check that what is deployed is exactly that.</li><li><strong>No human can move the fund.</strong> On 11 September 2026 ownership of the treasury and the distributor was renounced on-chain: not even the author can redirect the funds or change the draw rate. Money only leaves when someone in the register claims.</li></ul>
+<ul><li>Treasury balance, live.</li><li>Active register, live (aggregate count and by country, never identities).</li><li>Today's per-capita and the historical series.</li><li>Every contribution, attributed to the contributor.</li><li>Every Pledge, with its quarterly compliance marked.</li><li>The source code of every contract, public on GitHub under the MIT licence and verified on Celoscan, Blockscout and Sourcify: anyone can check that what is deployed is exactly that.</li><li><strong>No human can move the fund.</strong> On 11 September 2026 ownership of the treasury and the distributor was renounced on-chain: not even the author can redirect the funds or change the draw rate. Money only leaves when someone in the register claims.</li></ul>
 <p><strong>An explicit design decision: SUBI issues no token.</strong> There is no presale, no airdrop, no valuation, no treasury held in a token of its own. You contribute stablecoins and you are paid in stablecoins. This eliminates three problems at once: classification as a security, capture of the project by speculators, and the legitimate suspicion that there is a business hiding behind the philanthropy. It is the difference between a proposal a foreign minister can sign and one they cannot.</p>
 <hr>
 <h2 id="4-the-technical-architecture"><a class="anchor" href="#4-the-technical-architecture">#</a>4. The technical architecture</h2>
