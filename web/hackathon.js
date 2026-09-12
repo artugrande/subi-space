@@ -56,7 +56,7 @@ const EN = {
     <a href="/dashboard">Dashboard</a>
     <a href="/proposal">Proposal</a>`,
 
-  'hero.badge': '<i></i> Celo Agents at Work · 28 Aug to 14 Sep 2026',
+  'hero.badge': '<i></i> Celo Agents at Work · 28 Aug to 21 Sep 2026',
   'hero.h': 'Three tracks, and the evidence for each',
   'hero.lead': `
     SUBI is a universal basic income funded by the resources of space, live on Celo mainnet.
