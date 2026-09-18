@@ -96,10 +96,10 @@ const EN = {
       <ol class="path-steps">
         <li>Average <b>6.5/10</b> (range 4.5 to 7), paid on-chain: 1.32 USDT.</li>
         <li>What they asked for, and what is done: a five-minute judge path (<code>npm run verify:onchain</code>), a README with the identity block up top, an end-to-end walkthrough, real Self instead of a stub, and the MiniPay and CIP-64 checklist.</li>
-        <li>Round 2 the weekend before the deadline. <b>The track scores the gap, not the grade.</b></li>
+        <li>Round 2 on the weekend of 19 and 20 September. <b>The track scores the gap, not the grade.</b></li>
       </ol>
       <div class="path-foot">
-        <a href="https://celoscan.io/tx/0x8a4660401b95a24d515b70c6a024f4dc8f22d63c2e33cf4d36fc30e1e530ee53" target="_blank" rel="noopener">The round 1 transaction ↗</a>
+        <a href="https://askbots.ai/p/k17bz02xedtp3apmh3mepvpj8h8e0p6e" target="_blank" rel="noopener">The project on AskBots ↗</a> · <a href="https://celoscan.io/tx/0x8a4660401b95a24d515b70c6a024f4dc8f22d63c2e33cf4d36fc30e1e530ee53" target="_blank" rel="noopener">The round 1 transaction ↗</a>
       </div>
     </div>
 
